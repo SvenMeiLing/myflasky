@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>欢迎来到登陆界面</title>
+        <link rel="icon" href="/static/images/plant6.png">
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/css/index.css">
+        <link rel="stylesheet" href="/static/css/animate.css">
+        <script src="/static/js/index.js"></script>
+    </head>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: auto;
+            position: relative;
+        }
+
+        .input {
+            background: none;
+            outline: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 0.15rem solid black;
+            width: 100%;
+            color: black;
+            font-size: 1.2rem;
+            font-weight: 350;
+            font-family: Arial, serif;
+
+        }
+
+        .masking-child {
+            background: rgba(255, 255, 255, 10%);
+        }
+
+
+        ::selection {
+            background-color: lightslategray;
+        }
+
+        input {
+            caret-color: salmon;
+        }
+
+
+        .bg {
+            background-image: url("/static/images/海洋.jpg");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .masking {
+            height: 14rem;
+            background-color: rgba(255, 255, 255, 30%);
+        }
+
+
+    </style>
+    <body class="bg">
+        <svg class="icon"
+             style="width: 0.8em;height: 0.8em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1579">
+            <symbol id="myclick">
+                <path d="M455.68 404.032l91.264 529.152c0 0 67.456-69.44 123.136-117.888l122.432 163.904c4.928 6.656 15.68 7.104 23.872 1.088l52.288-38.208c8.256-6.016 10.944-16.32 5.952-22.976l-119.104-159.424c62.208-25.088 164.672-53.632 164.672-53.632L455.68 404.032zM308.352 648.384l-135.872 99.328c-20.544 15.04-24.256 43.968-8 65.408 16.256 21.376 46.272 27.008 66.752 12.032l135.872-99.328c20.992-15.36 24.512-45.504 8.256-66.88C359.168 637.504 329.344 633.024 308.352 648.384zM949.696 238.976c-16.256-21.376-45.632-26.176-67.072-10.496l-134.912 98.688c-21.44 15.68-25.152 44.672-8.896 66.048 16.256 21.376 46.272 27.008 67.712 11.328l134.912-98.688C962.88 290.176 965.952 260.352 949.696 238.976zM319.296 136.832c-15.936-20.928-45.248-25.728-66.752-10.048-20.096 14.72-24.256 43.968-8.32 64.896l105.536 138.816c15.936 20.992 45.696 25.408 65.792 10.688 21.44-15.68 25.216-44.608 9.28-65.6L319.296 136.832zM585.792 301.76c26.176 4.224 50.24-13.376 53.632-39.232l21.184-167.808c3.392-25.792-14.976-49.984-41.536-54.656-26.176-4.224-50.24 13.376-53.632 39.168l-21.248 167.872C540.928 272.96 559.296 297.088 585.792 301.76zM329.728 489.024c2.56-25.92-15.808-50.048-41.536-54.656l-170.048-27.968c-27.072-3.584-50.688 13.696-53.632 39.232-3.904 26.944 14.464 51.072 41.536 54.656l170.048 27.968C301.824 532.736 325.504 515.456 329.728 489.024z"
+                      fill="black" p-id="1580"></path>
+            </symbol>
+
+        </svg>
+        <div class="container-fluid" style="position: absolute; top: 50%">
+            <div class="row">
+                <div class="masking col-12 col-xl-4 col-xxl-4 col-lg-4 col-md-6 col-sm-12" style="position: relative">
+                    <div style="position: absolute; top: 12%; left:10%;width: 90%">
+                        <div class="lead display-1 animate__animated animate__slideInLeft">
+                            欢迎来访!
+                        </div>
+                        <div class="animate__animated animate__slideInRight animate__delay-1s">
+                            <a href="/file/upload" class="lead display-6 text-black"
+                               style="text-decoration-line: none">
+                                进入
+                                <svg class="icon"
+                                     style="width: 35px;height: 35px;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                                     viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     p-id="1579">
+                                    <use xlink:href="#myclick"></use>
+                                </svg>
+                            </a>
+                            <a href="/user/register" class="lead display-6 text-black "
+                               target="_blank" style="text-decoration-line: none">
+                                注册
+                                <svg class="icon"
+                                     style="width: 35px;height: 35px;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                                     viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     p-id="1579">
+                                    <use xlink:href="#myclick"></use>
+                                </svg>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="masking col-12 col-xl-4 col-xxl-4 col-lg-4 col-md-6 col-sm-12 "
+                     style="border-left: 1.7px solid black;border-right: 1.7px solid black;position: relative">
+                    <div class="mb-1">
+                        <p class="lead text-um text-xxl text-xl text-lg text-md text-sm text-sr"
+                           style="position: absolute;top: 10%;text-indent: 2em">
+                            欢迎来到我们的植物病害识别网站！我们这里提供专业的植物病害诊断服务，帮助您识别植物病害，制定适当的防治方案。我们的网站支持图片上传识别和人工诊断两种方式，简单易用且高效准确。无论您是种植业爱好者，还是农业专业人士，我们都能为您提供专业的服务。快来体验吧！
+                        </p>
+                    </div>
+                </div>
+
+                <div class="masking col-12 col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12 d-flex align-items-md-center justify-content-md-between ">
+                    <div class="container-fluid masking-child mx-3 mx-md-auto">
+                        <form action="/user/login" autocomplete="off" method="post">
+                            <div class="row ">
+                                {% with messages = get_flashed_messages() %}
+                                    <span style="color: crimson" id="error">{{ messages.0 }}</span>
+                                {% endwith %}
+                                <div class="col-6">
+                                    <input type="text" placeholder="请输入邮箱:" name="email" class="input" required>
+                                </div>
+                                <div class="col-6">
+                                    <input type="password" placeholder="请输入密码:" name="password" class="input"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="row  mb-xxl-2 mb-md-3">
+                                <div class="col-6 col-xxl-6 col-xl-6 col-md-6 col-sm-6">
+                                    <img src="/static/code_img/code.png" alt="" style="width: 80% ;height: 70%">
+                                </div>
+                                <div class="col-6 col-xxl-6 col-xl-6 col-md-6 col-sm-6">
+                                    <input type="text" name="code" placeholder="输入验证码:" class="input" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button class="btn text-xxl text-xl text-lg text-md text-sm text-um"
+                                style="background-color: rgba(255, 255, 255, 40%)">
+                                    登录
+                                    <svg class="icon"
+                                         style="width: 1rem;height: 1rem;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                                         viewBox="0 0 1024 1024" version="1.1"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         p-id="1579">
+                                        <use xlink:href="#myclick"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script>
+        window.onload = function () {
+            setInterval(function () {
+                const elem = document.querySelector("#error");
+                if (elem.innerText.trim() !== "") { // 如果标签文本内容不为空
+                    setTimeout(function () {
+                        elem.innerText = ""; // 清除标签文本内容
+                    }, 2000); // 等待2秒执行
+                }
+            }, 500); // 每500毫秒检测一次
+            // 调用示例：
+            showToast('如果您已经登录请直接点击下方的 <u>进入</u>');
+        };
+
+    </script>
+</html>

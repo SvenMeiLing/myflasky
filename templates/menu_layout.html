@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Forest</title>
+        <link rel="stylesheet" href="/static/css/menu_layout.css">  <!-- 引入页面专属样式-->
+        <link rel="icon" href="/static/images/plant6.png">  <!-- 引入图标-->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">    <!-- 引入bootstrap5-->
+
+
+        <!-- 引入脚本-->
+        <script src="/static/js/jquery-3.6.3.min.js"></script>
+        <script src="/static/js/sweetalert2@11.js"></script>
+        <script src="/static/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+
+        <script src="/static/js/menu_layout.js"></script>
+        <script src="/static/js/camera.js"></script>
+        <script src="/static/js/pagination.js"></script>
+        <script src="/static/js/mobile.js"></script>
+
+
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="/static/images/plant6.png" alt="Logo" width="30px" height="24px"
+                         class="d-inline-block align-text-top">
+                    Forest
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                     aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">用户<span id="emailName"
+                                                                                        style="color: #6ea8fe">{{ email }}</span>您好
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+                                id="r-bar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">首页</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="logout">登出</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+
+        <div class="container-fluid mt-5" id="con-box">
+            <div class="row">
+                <div class="col-xxl-2 col-lg-3 col-md-3 col-sm-12 col-12 mt-4 mt-lg-5 mt-xxl-5">
+                    <nav class="nav  flex-xxl-column flex-sm-column flex-row nav-pills me-auto mb-2 mb-lg-0"
+                         id="menuBar">
+                        <a class="nav-link active lead fs-6" aria-current="page" href="#menu1">
+                            <img src="/static/images/home2.png" width="20" height="20">
+                            访客页面
+                        </a>
+                        <a class="nav-link" href="#menu2">
+                            <img src="/static/images/upload2.png" width="20"
+                                 height="20">
+                            上传文件
+                        </a>
+                        <a class="nav-link" href="#menu3" id="aMenu3">
+                            <img src="/static/images/camera.png" width="20" height="20">
+                            相机拍摄
+                        </a>
+                        <a class="nav-link" href="#menu4">
+                            <img src="/static/images/about2.png" width="20" height="20">
+                            关于我们
+                        </a>
+
+                        <a class="nav-link" href="#menu5" id="linkMenu5">
+                            <img src="/static/images/data2.png" width="20" height="20">
+                            数据面板
+                        </a>
+
+                        <a class="nav-link disabled" href="#menu6">
+                            <img src="/static/images/study.png" width="20"
+                                 height="20">
+                            未知页
+                        </a>
+                    </nav>
+                </div>
+                <div class="col-md-9 col-lg-9 mt-5">
+                    <div id="menu1" class="content">
+                        <div class="lead display-5">植物病害鉴定</div>
+                        <div class="lead"><code>Plant Disease Identification</code></div>
+                        <div class="row g-0 bg-light position-relative shadow">
+                            <div class="col-md-6  mb-md-0 p-md-4">
+                                <img src="/static/images/leave.png" class="w-100 shadow" alt="...">
+                            </div>
+                            <div class="col-md-6 p-4 ps-md-0">
+                                <h5 class="mt-0">Plant Disease Diagnosis Made Easy</h5>
+                                <p class="lead">
+                                    欢迎来到我们的植物病害识别网站！我们致力于帮助园艺爱好者、农民和业余爱好者轻松准确地诊断植物病害。我们的平台采用最先进的人工智能技术，让用户可以快速识别和了解常见的植物病害。通过我们友好的用户界面，您可以轻松上传植物图片并获得即时诊断，以及有效管理疾病的建议。加入我们的社区，让您的植物健康茁壮成长！
+                                </p>
+                                <a href="#" class="stretched-link">Try</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu2" class="content" style="display:none">
+                        <div id="error-alert" class="alert alert-danger d-none" role="alert"></div>
+                        <div class="display-6">上传植物相片, 以进行即时分析</div>
+                        <button type="button" class="btn btn-lg mt-4 mb-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                data-bs-whatever="@fat" style="background-color: lightseagreen">尝试一下 <span><img
+                                src="/static/images/bulb.png" width="10%" height="10%"></span>
+                        </button>
+                        <p class="lead">Upload for Instant Diagnosis
+                            <span class="small shadow" style="color: palevioletred">结果将显示在下方表格中:</span>
+                        </p>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">仅支持图片文件哦!</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <form id="myForm" enctype="multipart/form-data" method="post"
+                                          action="/file/upload">
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">请选择文件</label>
+                                                <input type="file" class="form-control" id="fileInput" name="file"
+                                                       required
+                                                       multiple
+                                                       accept="image/*"
+                                                       capture="environment"
+                                                >
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Message:</label>
+                                                <textarea class="form-control" id="message-text" readonly autofocus
+                                                          style="color: crimson">建议您一次仅提交一个文件, 否则识别效率将会降低!</textarea>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer" id="menu2Modal">
+
+                                            <div class="text-center" id="menu2Loading"></div>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    id="closeMenu2Modal">
+                                                关闭
+                                            </button>
+                                            <button type="submit" class="btn btn-primary" id="submitBtn">提交</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="overflow-x: auto">
+                            <table class="table table-light shadow">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">名称</th>
+                                        <th scope="col">耗时</th>
+                                        <th scope="col" style="width: 50%">描述</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>...</td>
+                                        <td>...</td>
+                                        <td>...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div id="menu3" class="content" style="display:none">
+                        <div class="display-6 lead">
+                            植物病害识别器 <span class="small shadow rounded-2"
+                                                 style="color: hotpink">Plant Disease Identifier</span>
+                        </div>
+
+                        <div class="row g-0 bg-body-secondary position-relative mt-4">
+                            <div class="col-md-6 mb-md-0 p-md-4">
+                                <img src="/static/images/plant9.jpg" class="w-100" alt="...">
+                            </div>
+                            <div class="col-md-6 p-4 ps-md-0">
+                                <p style="text-indent: 2rem" class="fs-5">
+                                    使用您的手机拍摄照片，上传到我们的网站，我们的智能算法会自动识别您拍摄的植物是否患有病害，并提供对应的治疗建议。这是一款非常方便的解决方案，帮助您及时发现和治疗您的植物，以保证它们健康地成长。
+                                </p>
+                                <a href="#menuCamera" class="btn btn-link">尝试一下</a>
+
+                                <div aria-live="polite" aria-atomic="true"
+                                     class="d-flex justify-content-center align-items-center w-100 mt-5">
+
+                                    <!-- Then put toasts within -->
+                                    <div class="toast position-fixed" role="alert" aria-live="assertive"
+                                         aria-atomic="true"
+                                         id="myToast">
+                                        <div class="toast-header">
+                                            <img src="/static/images/lightning2.png" class="rounded me-2" alt="..."
+                                                 width="20"
+                                                 height="20">
+                                            <strong class="me-auto lead text-black" id="toast-title"></strong>
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="toast-body" id="toast-message">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="menu4" class="content" style="display:none">
+                        <h2>欢迎来到文档页面</h2>
+                        <div style="position:relative; padding-bottom: 45%">
+                            <iframe src="../static/md/Myflask.html"
+                                    frameborder="0"
+                                    style="position:absolute; top:0; left:0; width:100%; height:100%;"
+                            ></iframe>
+                        </div>
+
+                    </div>
+                    <div id="menu5" class="content" style="display:none">
+                        <div class="display-6">欢迎您,
+                            <span id="welcomeUser" class="shadow" style="color: #9ec5fe">
+                        <!-- 欢迎您管理员-->
+                    </span>
+                        </div>
+                        <div class="fs-4 mt-2 lead">
+                            <span style="text-shadow: #e685b5 3px 4px 5px;">Image description</span>
+                            <span>
+                                <button class="btn btn-lg" type="button" style="background-color: #e685b5" id="refresh">
+                                    强制刷新
+                                    <span>
+                                        <img src="/static/images/refresh.png" alt="refresh" width="30" height="30"
+                                             id="rotateImg">
+                                    </span>
+                                </button>
+                            </span>
+                            <nav aria-label="..." class="d-block">
+                                <ul class="pagination" id="pageGroup">
+                                    <!--此处为页码-->
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <table class="table position-relative table-danger table-striped table-hover mt-1"
+                               id="tableAdmin"
+                               style="border-radius: 5%">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 5%">id</th>
+                                    <th scope="col" style="width: 20%">名称</th>
+                                    <th scope="col" style="width: 10%">耗时</th>
+                                    <th scope="col" style="width: 40%">描述</th>
+                                    <th scope="col" style="width: 15%">文件名称</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody2">
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div id="menu6" class="content" style="display:none">
+                        <h2>菜单5</h2>
+                        <p>这是菜单五的内容。</p>
+                    </div>
+                    <div id="menuCamera" class="content" style="display: none">
+                        <div class="container ms-xxl-5 ms-md-2 ms-md-1 ms-0">
+                            <div class="lead fs-4">拍摄控制台</div>
+                            <div class="row">
+                                <div class="col-xl-6 col-md-6 col-sm-12 col-12 mt-2 mb-4">
+                                    <div id="camera">
+                                        <img src="/static/images/cameraicon.svg" alt="Camera Image"/>
+                                        <video controls playsinline></video>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button id="toggle" class="btn btn-sm" style="background-color: deepskyblue">
+                                            拍摄
+                                        </button>
+                                        <button id="upload" class="btn btn-sm" style="background-color: crimson">
+                                            上传
+                                        </button>
+                                        <button id="toggleCamera" class="btn btn-sm" style="background-color: #86b7fe">
+                                            切换摄像头
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-6 col-md-6 col-sm-12 col-12">
+                                    <table class="table table-striped table-hover rounded">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">名称</th>
+                                                <th scope="col">耗时</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody3">
+                                            <tr>
+                                                <td>...</td>
+                                                <td>...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <a href="#menu3" class="">返回</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

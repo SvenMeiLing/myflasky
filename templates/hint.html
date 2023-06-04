@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/animate.css">
+        <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/js/axios.min.js"></script>
+        <style>
+            html {
+                height: 100%;
+            }
+
+            body {
+                overflow-x: hidden;
+                background-image: url("/static/images/pexels-pixabay-164250.jpg");
+                margin: 0;
+                height: 100%;
+                background-position: left;
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                border: none;
+            }
+
+            .masking {
+                background-color: rgba(255, 255, 255, 40%);
+            }
+
+            .linkMasking {
+                background-color: rgba(255, 255, 255, 70%);
+            }
+
+            .input {
+                outline: none;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+                font-size: 1.2rem;
+                font-weight: 450;
+                font-family: Arial, serif;
+                background: rgba(255, 255, 255, 50%) none;
+                border-radius: 7px 7px 7px 7px;
+                caret-color: #86b7fe;
+                color: white;
+                width: 100%;
+            }
+
+            label {
+                color: white;
+            }
+
+            input:focus {
+                box-shadow: 0 0 10px cornflowerblue;
+            }
+
+            button:focus {
+                box-shadow: 0 0 15px snow;
+            }
+
+            ::placeholder {
+                color: midnightblue;
+                font-size: 1.125rem;
+                font-weight: 450;
+                font-family: Delius, Garamond, serif;
+            }
+
+            #secret::placeholder {
+                color: white;
+            }
+
+            #submitBtn {
+                background-color: cornflowerblue;
+            }
+
+            .left-box {
+                background-color: rgba(0, 0, 0, 50%);
+                border-radius: 7px 7px 7px 7px;
+                position: relative;
+            }
+
+            .right-box {
+                background-color: rgba(255, 255, 255, 50%);
+                border-radius: 7px 7px 7px 7px;
+            }
+
+            .circle {
+                width: 40px;
+                height: 40px;
+                background-color: white;
+                border-radius: 10%;
+                background-image: url("/static/images/righticon.png");
+                background-size: contain;
+            }
+
+            .center-box {
+                position: absolute;
+                top: 50%; /* 将小方块的顶部与父元素的中心对齐 */
+                left: 100%; /* 将小方块的左侧与父元素的右侧对齐 */
+                transform: translate(-50%, -50%); /* 将小方块水平和垂直居中 */
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid masking">
+            <div class="display-1" style="">Welcome to register</div>
+        </div>
+        <div class="container mt-5 w-100 h-75">
+            <div class="row">
+                <div class="col-8 left-box position-relative">
+                    <div class="text-light mt-2 display-6 d-inline-block ">欢迎您试用</div>
+
+                    <form action="/user/register" autocomplete="off" method="post">
+                        <div class="row mt-5 ms-xl-5 ms-lg-3 ms-md-2 ms-sm-1 ms-0">
+                            <div class="col-12 col-xl-6 col-lg-8 col-md-10 col-sm-12">
+                                <label for="email" class="d-block lead">Email:</label>
+                                <input type="email" class="input" placeholder="请输入邮箱:" required name="email">
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 mb-5 ms-xl-5 ms-lg-3 ms-md-2 ms-sm-1 ms-0">
+                            <div class="col-12 col-xl-6 col-lg-8 col-md-10 col-sm-12">
+                                <label for="password" class="d-block lead">Password:</label>
+                                <input type="password" class="input" placeholder="请输入密码:" required
+                                       name="password">
+                            </div>
+                        </div>
+                        <div class="row mt-5 mb-5 ms-xl-5 ms-lg-3 ms-md-2 ms-sm-1 ms-0">
+                            <div class="col-4">
+                                <a type="button" class="btn btn-sm btn-light" id="back">返回</a>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-sm" id="submitBtn">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                    <button class="circle center-box btn btn-light animate__fadeOut" type="button" id="lrBtn"></button>
+                </div>
+
+                <div class="col-4 right-box" id="rightBox">
+                    <div class="row lead">
+                        <div class="card" style="border-radius: 10px 10px 0 0;">
+                            <div class="card-header">
+                                <small>Test</small>
+                                <img src="/static/images/dev.png" class="rounded me-2" alt="..." width="20" height="20">
+                                <span style="font-size: 0.9rem" class="lead">欢迎您开发者</span>
+                            </div>
+                            <div class="card-text" style="font-size: 0.9rem;text-align: center">
+                                此页面仅供开发人员调试和使用
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-xxl-5 mt-xl-4 mt-lg-4 mt-md-3 mt-sm-2 mt-1">
+                        <p>
+                            <input type="password" class="btn"
+                                   style="border:none;background-color: black; width: 100%;opacity: 50%" required
+                                   placeholder="请键入密钥:" id="secret"
+                            >
+                            <button class="btn" data-bs-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample"
+                                    style="background-color: teal; color:#e2e3e5" type="submit"
+                                    id="toggleBtn"
+                            >
+                                Show Link
+                            </button>
+                        </p>
+
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="linkMasking m-xl-5 m-sm-5 rounded">
+                                <nav class="nav flex-column align-items-center">
+                                    <a class="nav-link active" aria-current="page" href="/user/login" target="_blank">登录页</a>
+                                    <a class="nav-link" href="/file/upload" target="_blank">功能页</a>
+                                    <a class="nav-link" href="/docs" target="_blank">文档页</a>
+                                    <a class="nav-link disabled" target="_blank">未知页</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            window.onload = function () {
+                let lrBtn = document.querySelector("#lrBtn");
+                let rightBox = document.querySelector("#rightBox");
+
+                lrBtn.addEventListener("click", async function () {
+                        await axios.get("/data/auth/", {  // 发起请求获取能否访问开发者界面
+                            params: {
+                                count: count
+                            }
+                        }).then(async function (response) {
+                            if (await response.data.status) {
+                                console.log(response.data.status)
+                                showRightBox();
+                            } else {  // 隐藏原有内容
+                                rightBox.innerHTML = `
+                                    <div class="position-relative top-50 start-50 display-1">
+                                        ?
+                                    </div>
+                                `
+                                alert("您暂时无法进入开发者界面")
+                            }
+                        }).catch(function (error) {
+                            console.log(error)
+                        })
+
+                        function showRightBox() {  // 右框界面
+                            // 获取右框样式
+                            let displayStyle = window.getComputedStyle(rightBox).display
+                            // 收纳右框
+                            if (displayStyle === "none") {
+                                rightBox.style.display = "block"
+                                rightBox.classList.add("animate__animated", "animate__fadeInLeft")
+                                setTimeout(function () {
+                                    rightBox.classList.remove("animate__animated", "animate__fadeInLeft")
+                                }, 1000)
+
+                                lrBtn.style.backgroundImage = `url("/static/images/lefticon.png")`
+
+                            } else {
+                                rightBox.classList.add("animate__animated", "animate__fadeOutLeft")
+                                setTimeout(function () {
+                                    rightBox.classList.remove("animate__animated", "animate__fadeOutLeft")
+                                    rightBox.style.display = "none"
+                                }, 1000)
+                                lrBtn.style.backgroundImage = `url("/static/images/righticon.png")`
+                            }
+                        }
+                    }
+                )
+                let react = false;  // 用户验证的标识
+                async function authToUser() { // 发起获取token的请求
+                    await axios.get('/data/auth/', {
+                        params: {
+                            email: secret.value
+                        }
+
+                    }).then(function (response) {
+                        if (response.data.access_token) {
+                            react = true;
+                        }
+                    }).catch(function (error) {
+                        react = false;
+                    });
+                }
+
+                let count = 0
+                // 在按钮上添加点击事件监听器
+                toggleBtn.addEventListener('click', async function () {
+                    await authToUser()  // 等待函数执行完毕
+                    console.log(react)
+                    if (react) {  // 如果校验成功
+                        // 设置Cookie
+                        const now = new Date();
+                        now.setTime(now.getTime() + 24 * 60 * 60 * 1000);  // 1天后过期
+                        document.cookie = "email=ipython; expires=" + now.toUTCString() + "; path=/";
+                        // 切换折叠内容的显示和隐藏状态
+                        const collapseRange = document.querySelector("#collapseExample")
+                        let displayStyle = window.getComputedStyle(collapseRange).display
+                        if (displayStyle === 'none') {  // 淡入动画
+                            collapseRange.style.display = 'block';
+                            collapseRange.classList.add("animate__animated", "animate__fadeInTopRight")
+                            setTimeout(function () {
+                                collapseRange.classList.remove("animate__animated", "animate__fadeInTopRight")
+                            }, 1000)
+                        } else {  // 淡出动画
+                            collapseRange.classList.add("animate__animated", "animate__fadeOutTopRight")
+                            setTimeout(function () {
+                                collapseRange.classList.remove("animate__animated", "animate__fadeOutTopRight")
+                                collapseRange.style.display = "none"
+                            }, 1000)
+                        }
+                    } else {  // 如果校验失败
+                        count += 1
+                        alert("输入密钥有误!")
+                        console.log(count)
+                        if (count >= 5) {
+                            rightBox.innerHTML = `<div class="position-relative top-50 start-50 display-1">?</div>`
+                        }
+                    }
+
+                })
+
+
+            }
+
+
+        </script>
+
+    </body>
+</html>

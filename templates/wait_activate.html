@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册成功</title>
+    <link rel="icon" href="../static/images/register.png">
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 48px 24px;
+        }
+
+        .card {
+            border-radius: 16px;
+        }
+
+        .card-body {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 12px 32px;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-primary:active,
+        .btn-primary.active {
+            background-color: #0062cc;
+            border-color: #005cbf;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card" style="background-color: rgba(255,255,255,10%)">
+        <div class="card-body text-light">
+            <p class=" lead">感谢您的注册 <u style="color: palevioletred">{{ email }}</u> !</p>
+            <p class=" lead">但是您还未激活, 请查看收件箱, 点击链接即可激活账户</p>
+            <a href="https://mail.qq.com/" class="btn btn-lg btn-primary">访问QQ邮箱</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

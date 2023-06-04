@@ -1,0 +1,16 @@
+Flask
+flask_caching
+flask_cors
+flask_jwt_extended
+flask_mail
+flask_paginate
+flask_session
+lxml
+Pillow
+PyYAML
+redis
+Requests
+SQLAlchemy
+torch==1.9.1
+torchvision==0.10.1
+Werkzeug

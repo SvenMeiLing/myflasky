@@ -1,0 +1,50 @@
+# flask配置
+SECRET_KEY: 'dev'
+DEBUG: true
+# 初始化之前需加载的配置如下
+INSTANCE_PATH: "C:\\Users\\zouxi\\PycharmProject\\myflasky\\app\\instance"
+TEMPLATE_HOLDER: "../templates"
+STATIC_FOLDER: "../static"
+
+
+# flask-session配置
+SESSION_TYPE: 'redis'
+SESSION_PERMANENT: false
+SESSION_USE_SIGNER: true
+
+
+# sqlalchemy配置
+SQLALCHEMY_DATABASE_URI: 'sqlite:///data.db'  # sqlite 数据库的路径, sqlite是文本型数据库所以是文件形式存储在本地
+
+
+# flask-Mail配置
+MAIL_SERVER: 'smtp.qq.com'  #: 邮箱服务商, 此处选用qq
+MAIL_PORT: 587  #: qq邮箱的服务端口此处采用SMTP的587
+MAIL_USE_TLS: True  #: 使用tls
+MAIL_USERNAME: '2744726697@qq.com'  #: 默认登录邮箱
+MAIL_PASSWORD: 'wmqudscaseledfdi'  #: QQ邮箱授权码
+MAIL_DEFAULT_SENDER: '2744726697@qq.com'  #: 默认发件人邮箱
+MAIL_DEBUG: False
+
+
+# flask-jwt-extend
+JWT_SECRET_KEY: 'jose'  #: 设置token密钥
+JWT_ACCESS_TOKEN_EXPIRES: 86400  #: 设置accessToken的有效期, 否则token有效期极短
+
+#app.config['JWT_ACCESS_TOKEN_EXPIRES']: timedelta(minutes=15)
+#app.config['JWT_REFRESH_TOKEN_EXPIRES']: timedelta(days=30)
+#app.config['JWT_BLACKLIST_ENABLED']: True
+
+
+# flask-caching
+CACHE_TYPE: 'simple'
+CACHE_DEFAULT_TIMEOUT: 300
+
+# redis数据库配置
+REDIS_CONFIG:
+  REDIS_HOST: '127.0.0.1'
+  REDIS_PORT: 6379
+  REDIS_SELECT_DB: 0
+
+
+

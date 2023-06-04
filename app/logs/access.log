@@ -1,0 +1,138 @@
+Request / from 127.0.0.1, method is GET
+Request / from 127.0.0.1 took 2023-05-17 13:41:27 seconds
+Request /user/login from 127.0.0.1, method is GET
+Request /user/login from 127.0.0.1 took 2023-05-17 13:41:27 seconds
+Request /static/css/bootstrap.css from 127.0.0.1, method is GET
+Request /static/code_img/code.png from 127.0.0.1, method is GET
+Request /static/css/bootstrap.css from 127.0.0.1 took 2023-05-17 13:41:28 seconds
+Request /static/code_img/code.png from 127.0.0.1 took 2023-05-17 13:41:28 seconds
+Request /static/images/pexels-pixabay-247600.jpg from 127.0.0.1, method is GET
+Request /static/images/pexels-pixabay-247600.jpg from 127.0.0.1 took 2023-05-17 13:41:28 seconds
+Request /favicon.ico from 127.0.0.1, method is GET
+Request /favicon.ico from 127.0.0.1 took 2023-05-17 13:41:29 seconds
+Request / from 127.0.0.1, method is GET
+Request / from 127.0.0.1 took 2023-05-19 18:36:39 seconds
+Request /user/login from 127.0.0.1, method is GET
+Request /user/login from 127.0.0.1 took 2023-05-19 18:36:39 seconds
+Request /static/css/bootstrap.css from 127.0.0.1, method is GET
+Request /static/code_img/code.png from 127.0.0.1, method is GET
+Request /static/css/bootstrap.css from 127.0.0.1 took 2023-05-19 18:36:39 seconds
+Request /static/code_img/code.png from 127.0.0.1 took 2023-05-19 18:36:39 seconds
+Request /static/images/pexels-pixabay-247600.jpg from 127.0.0.1, method is GET
+Request /static/images/pexels-pixabay-247600.jpg from 127.0.0.1 took 2023-05-19 18:36:39 seconds
+Request /favicon.ico from 127.0.0.1, method is GET
+Request /favicon.ico from 127.0.0.1 took 2023-05-19 18:36:40 seconds
+Request /user/login from 127.0.0.1, method is POST
+Request /user/login from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /file/upload from 127.0.0.1, method is GET
+Request /file/upload from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/css/bootstrap.css from 127.0.0.1, method is GET
+Request /static/css/menu_layout.css from 127.0.0.1, method is GET
+Request /static/js/bootstrap.bundle.js from 127.0.0.1, method is GET
+Request /static/js/jquery-3.6.3.min.js from 127.0.0.1, method is GET
+Request /static/css/bootstrap.css from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/js/bootstrap.js from 127.0.0.1, method is GET
+Request /static/js/bootstrap.bundle.js from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/css/menu_layout.css from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/js/bootstrap.js from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/plant6.png from 127.0.0.1, method is GET
+Request /static/images/plant6.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/home2.png from 127.0.0.1, method is GET
+Request /static/js/jquery-3.6.3.min.js from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/upload2.png from 127.0.0.1, method is GET
+Request /static/images/home2.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/about2.png from 127.0.0.1, method is GET
+Request /static/images/camera.png from 127.0.0.1, method is GET
+Request /static/images/upload2.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/data2.png from 127.0.0.1, method is GET
+Request /static/images/about2.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/study.png from 127.0.0.1, method is GET
+Request /static/images/camera.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/leave.png from 127.0.0.1, method is GET
+Request /static/images/data2.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/bulb.png from 127.0.0.1, method is GET
+Request /static/images/study.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/leave.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/plant9.jpg from 127.0.0.1, method is GET
+Request /static/images/lightning2.png from 127.0.0.1, method is GET
+Request /static/images/bulb.png from 127.0.0.1 took 2023-05-19 18:36:56 seconds
+Request /static/images/refresh.png from 127.0.0.1, method is GET
+Request /static/images/cameraicon.svg from 127.0.0.1, method is GET
+Request /static/images/plant9.jpg from 127.0.0.1 took 2023-05-19 18:36:57 seconds
+Request /static/images/refresh.png from 127.0.0.1 took 2023-05-19 18:36:57 seconds
+Request /static/images/lightning2.png from 127.0.0.1 took 2023-05-19 18:36:57 seconds
+Request /static/images/cameraicon.svg from 127.0.0.1 took 2023-05-19 18:36:57 seconds
+Request / from 192.168.43.1, method is GET
+Request / from 192.168.43.1 took 2023-05-19 18:37:40 seconds
+Request /user/login from 192.168.43.1, method is GET
+Request /user/login from 192.168.43.1 took 2023-05-19 18:37:40 seconds
+Request /static/css/bootstrap.css from 192.168.43.1, method is GET
+Request /static/code_img/code.png from 192.168.43.1, method is GET
+Request /static/css/bootstrap.css from 192.168.43.1 took 2023-05-19 18:37:40 seconds
+Request /static/code_img/code.png from 192.168.43.1 took 2023-05-19 18:37:40 seconds
+Request /static/images/pexels-pixabay-247600.jpg from 192.168.43.1, method is GET
+Request /static/images/pexels-pixabay-247600.jpg from 192.168.43.1 took 2023-05-19 18:37:40 seconds
+Request /favicon.ico from 192.168.43.1, method is GET
+Request /favicon.ico from 192.168.43.1 took 2023-05-19 18:37:41 seconds
+Request /user/login from 192.168.43.1, method is POST
+Request /user/login from 192.168.43.1 took 2023-05-19 18:38:13 seconds
+Request /file/upload from 192.168.43.1, method is GET
+Request /file/upload from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/css/menu_layout.css from 192.168.43.1, method is GET
+Request /static/js/bootstrap.bundle.js from 192.168.43.1, method is GET
+Request /static/css/bootstrap.css from 192.168.43.1, method is GET
+Request /static/js/bootstrap.js from 192.168.43.1, method is GET
+Request /static/css/menu_layout.css from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/js/bootstrap.bundle.js from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/css/bootstrap.css from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/js/bootstrap.js from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/js/jquery-3.6.3.min.js from 192.168.43.1, method is GET
+Request /static/js/jquery-3.6.3.min.js from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/plant6.png from 192.168.43.1, method is GET
+Request /static/images/plant6.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/home2.png from 192.168.43.1, method is GET
+Request /static/images/home2.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/upload2.png from 192.168.43.1, method is GET
+Request /static/images/camera.png from 192.168.43.1, method is GET
+Request /static/images/about2.png from 192.168.43.1, method is GET
+Request /static/images/upload2.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/data2.png from 192.168.43.1, method is GET
+Request /static/images/camera.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/study.png from 192.168.43.1, method is GET
+Request /static/images/about2.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/leave.png from 192.168.43.1, method is GET
+Request /static/images/data2.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/study.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/leave.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/bulb.png from 192.168.43.1, method is GET
+Request /static/images/bulb.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/lightning2.png from 192.168.43.1, method is GET
+Request /static/images/plant9.jpg from 192.168.43.1, method is GET
+Request /static/images/refresh.png from 192.168.43.1, method is GET
+Request /static/images/cameraicon.svg from 192.168.43.1, method is GET
+Request /static/images/lightning2.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/plant9.jpg from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/refresh.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/cameraicon.svg from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /static/images/plant6.png from 192.168.43.1, method is GET
+Request /static/images/plant6.png from 192.168.43.1 took 2023-05-19 18:38:14 seconds
+Request /data/auth/ from 192.168.43.1, method is GET
+Request /data/auth/ from 192.168.43.1 took 2023-05-19 18:38:24 seconds
+Request /data/auth/ from 192.168.43.1, method is GET
+Request /data/auth/ from 192.168.43.1 took 2023-05-19 18:38:53 seconds
+Request /data/auth/ from 192.168.43.1, method is GET
+Request /data/auth/ from 192.168.43.1 took 2023-05-19 18:38:54 seconds
+Request /static/images/plant6.png from 192.168.43.1, method is GET
+Request /static/images/plant6.png from 192.168.43.1 took 2023-05-19 18:38:58 seconds
+Request /static/images/plant6.png from 192.168.43.1, method is GET
+Request /static/images/plant6.png from 192.168.43.1 took 2023-05-19 18:38:59 seconds
+Request / from 127.0.0.1, method is GET
+Request / from 127.0.0.1 took 2023-05-19 18:46:02 seconds
+Request /user/login from 127.0.0.1, method is GET
+Request /user/login from 127.0.0.1 took 2023-05-19 18:46:02 seconds
+Request /static/css/bootstrap.css from 127.0.0.1, method is GET
+Request /static/css/bootstrap.css from 127.0.0.1 took 2023-05-19 18:46:02 seconds
+Request /static/code_img/code.png from 127.0.0.1, method is GET
+Request /static/code_img/code.png from 127.0.0.1 took 2023-05-19 18:46:02 seconds
+Request /static/images/pexels-pixabay-247600.jpg from 127.0.0.1, method is GET
+Request /favicon.ico from 127.0.0.1, method is GET

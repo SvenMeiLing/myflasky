@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block h1 %}
+	Welcome to Login
+{% endblock %}
+
+{% block content %}
+
+	<form method="post">
+		<div class="form-floating mb-3 mt-3">
+			<input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+			<label for="email">Email:</label>
+		</div>
+
+		<div class="form-floating mt-3 mb-3">
+			<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+			<label for="pwd">Password:</label>
+		</div>
+
+		<div class="form-floating mt-3 mb-3">
+			<input type="submit" class="form-control btn btn-outline-primary" name="" value="">
+			<label for="pwd" class="" style="font-size: 30px;">Submit  <code><<<</code></label>
+		</div>
+	</form>
+
+{% endblock %}

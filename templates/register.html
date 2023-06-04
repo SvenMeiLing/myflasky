@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>欢迎来到注册页面</title>
+        <link rel="icon" href="/static/images/plant6.png">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/animate.css">
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/jquery-3.6.3.min.js"></script>
+
+        <style>
+            html {
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                overflow-x: hidden;
+                background-image: url("/static/images/pexels-pixabay-164250.jpg");
+                margin: 0;
+                height: 100%;
+                background-position: left;
+                background-repeat: no-repeat; !important
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                border: none;
+            }
+
+            .input {
+                outline: none;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+                width: 100%;
+                font-size: 1.2rem;
+                font-weight: 450;
+                font-family: Arial, serif;
+                background: rgba(0, 0, 0, 50%) none;
+                border-radius: 7px 7px 7px 7px;
+                caret-color: #86b7fe;
+                color: white;
+            }
+
+            ::placeholder {
+                color: #e685b5;
+                font-size: 1rem;
+                font-family: Delius, Garamond, serif;
+            }
+
+            /* Optional: customize popup style */
+            .popup {
+                display: block;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+                /*rgba(0, 0, 0, 0.5);*/
+                opacity: 0;
+            }
+
+            ::selection {
+                background-color: cornflowerblue;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container-fluid masking">
+            <div class="row display-1 lead p-0" id="tips">
+                <div class="col-xl-3 col-lg-12 mt-xl-0 mt-5 offset-lg-0 offset-1">Welcome</div>
+                <div class="col-xl-3 col-lg-12 mt-xl-0 offset-lg-0 offset-6">to</div>
+                <div class="col-xl-3 col-lg-12 mt-xl-0 offset-lg-0 offset-8">register</div>
+            </div>
+        </div>
+        <div class="container-fluid mt-lg-1 mt-sm-3 mt-md-auto mt-xxl-1 mt-xl-1 popup" id="popup">
+            <form method="post" class="mt-5" autocomplete="off">
+                <div class="row">
+                    <div class="col-6 mb-3 mt-5 col-sm-6 offset-md-3 offset-3">
+                        <input type="email" class="input" name="email" placeholder="name@example.com"
+                               required>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-6 col-xl-6 col-md-6 col-sm-6 offset-md-3 offset-3">
+                        <input type="password" class="input" name="password" placeholder="Password"
+                               required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-3 mt-md-5 mt-1 col-sm-6 offset-md-3 offset-3">
+                        <a href="/user/login" class="btn btn-success btn-sm mt-md-5 mt-sm-1 mt-1">返回登录</a>
+                        <button type="submit"
+                                class="btn btn-primary btn-sm mt-md-5 mt-sm-1 mt-1 offset-md-6 offset-sm-1">确认注册
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <script>
+            $(window).on("load", function () {
+                let popup = $("#popup");
+                popup.addClass("animate__animated animate__fadeIn")
+                    .css("opacity", "1")
+                    .delay(1250) // Delay for half a second
+                    .queue(function (next) {
+                        popup.removeClass("animate__animated animate__fadeIn");
+                        next();
+                    });
+                let tipsChild = document.querySelectorAll("#tips > *");
+                tipsChild.forEach(function (ele, index) {
+                    setTimeout(() => {
+                        if (index === 0) {
+                            ele.classList.add("animate__slideInLeft", "animate__animated")
+                        } else if (index === 1) {
+                            ele.classList.add("animate__slideInUp", "animate__animated")
+                        } else {
+                            ele.classList.add("animate__slideInRight", "animate__animated")
+                        }
+                    }, (index) * 1250)
+                })
+
+            });
+
+
+        </script>
+    </body>
+</html>
