@@ -31,6 +31,12 @@ class UserModel(Base):
         back_populates="user",
         #: 当你访问data对象的user属性时这会很有用
     )
+    plant_details = relationship(
+        "PlantDetailModel",
+        lazy="dynamic",
+        cascade="all, delete-orphan",
+        back_populates="user"
+    )
 
     def __init__(self, name=None, email=None, *, password):
         self.name = name

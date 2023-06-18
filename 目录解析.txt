@@ -1,0 +1,36 @@
+/根路径存放
+
+    /models:
+        定义数据表模型
+    /static:
+        存放静态文件如 bootstrap, jquery
+    /templates:
+        存放模板文件如 html
+    /utils:
+        存放工具函数, 如 调用接口识别图像 从响应中提取关键信息 检查登陆状态
+
+	create_app.py:
+		加载配置文件, 执行初始化(数据库, session, )
+		注册一个响应结束时的操作(关闭各个数据库连接)
+		注册两个蓝图(user, file), 并在此之前已经添加好了url
+		并return一个app
+
+
+	database.py:
+		定义了 获取数据库连接的函数, 初始化数据表的函数...
+	redis_session:
+		定义了 连接redis数据库的函数
+
+    main.py:
+        通过导入create_app.py的函数创建一个app
+        这是程序的主入口, 定义了一个 首页视图函数
+
+    views.py:
+        定义了两个可插拔试图(user, file)
+        请求主要是 对于各自页面的get请求以及post请求, 登录页面已经更改成了通过index页面登录
+        file中post请求, 是接收文件, 并且保存在./upload目录下, 然后调用./utils目录下的函数对图片处理并拿到结果
+        用户上传文件有两种发送请求的方式:
+            1.通过页面input标签上传文件
+            2.通过页面摄像头, 拍摄后点击上传按钮通过 ajax上传
+
+

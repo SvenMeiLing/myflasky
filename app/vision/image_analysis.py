@@ -1,68 +1,65 @@
-# -*- coding: utf-8 -*-
-# FileName: image_analysis.py
-# Time : 2023/5/26 13:38
-
-
-from typing import Callable
+# coding: utf-8
+import time
 
 import torch
 import torchvision
-from torch import nn
-from PIL import Image
 import torchvision.transforms as transforms
+from PIL import Image
+from torch import nn
 
 from app.scripts.load_config import PROJECT_APP_DIR
 
 
-def get_analysis_index(img_url: str) -> int:
+def get_analysis_index(
+        image_path,
+        pth_file=PROJECT_APP_DIR / "vision" / 'plant_classifier_new4.2.pth'
+):
     """
-    负责植物病害分析, 仅限于模型中有的分类器
-    :param img_url: 图片路径
-    :return: 一个索引, 0~2
+    提供图像路径, 模型文件, 返回 -> 病害名称, 时间消耗, 正确几率,
+    :param image_path: 需要识别的图像路径
+    :param pth_file: 使用的模型文件
+    :return: (name, time_consume, rate)
     """
     model = torchvision.models.resnet18(pretrained=False)
-    num_classes = 3  # 根据实际分类数进行修改
+    num_classes = 3
     model.fc = nn.Linear(model.fc.in_features, num_classes)
-    model.load_state_dict(torch.load(PROJECT_APP_DIR / "vision" / 'plant_classifier2.pth', map_location=torch.device('cpu')))
+
+    state_dict = torch.load(pth_file, map_location=torch.device('cpu'))
+
+    new_state_dict = {}
+    for key in state_dict.keys():
+        if key.startswith('fc.1'):
+            new_key = key.replace('fc.1', 'fc')
+        else:
+            new_key = key.replace('fc.weight', 'fc.0.weight').replace('fc.bias', 'fc.0.bias')
+        new_state_dict[new_key] = state_dict[key]
+
+    model.load_state_dict(new_state_dict)
+
     model.eval()
 
+    dataset = ['番茄叶斑病', '苹果黑星病', '葡萄黑腐病']
     # 数据预处理
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
+        transforms.RandomHorizontalFlip(),  # 随机水平翻转
+        transforms.RandomRotation(10),  # 随机旋转
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
-
-    image_path = img_url
-
+    start = time.time()
     image = Image.open(image_path)
     image = transform(image)
-    image = image.unsqueeze(0)  # 添加一个维度作为批次维度
+    image = image.unsqueeze(0)
 
-    # 运行图像分类
+    # 图像分类
     with torch.no_grad():
         outputs = model(image)
+        _, predicted = torch.max(outputs.data, 1)
+        predicted_class = predicted.item()
 
-        # 获取预测结果
-    _, predicted = torch.max(outputs, 1)
-    predicted_class = predicted.item()
-    # 输出预测结果
-    return predicted_class
-
-
-def retrieval_result(callback: Callable, img_url) -> str:
-    """
-    :param callback: 一个识别图像并分类的function
-    :param img_url: 要识别的图像, 会自动传给图像分析的function
-    :return:
-    """
-    index_tables = {
-        0: "番茄叶斑病",
-        1: "苹果黑星病",
-        2: "葡萄黑腐病"
-    }
-    try:
-        return index_tables.get(callback(img_url))
-    except Exception as e:
-        print(e)
-        return "The program encountered an exception"
+    class_labels = dataset
+    predicted_label = class_labels[predicted_class]
+    confidence = torch.softmax(outputs, dim=1)[0][predicted_class].item()
+    print(confidence)
+    return predicted_label, time.time() - start, confidence

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/js/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+<script>
+    // 创建一个新的 HTML 元素，包含表单弹窗的 HTML 代码
+    var newHTML = `
+  <div id="myForm">
+    <form>
+      <div class="form-group">
+        <label for="urlInput">输入网址</label>
+        <input type="text" class="form-control" id="urlInput" placeholder="请在这里输入网址">
+      </div>
+      <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+  </div>
+`;
+
+    // 在 body 元素末尾添加新的 HTML 元素
+    $('body').append(newHTML);
+
+    // 绑定按钮点击事件
+    $('#myButton').click(function () {
+        // 显示表单弹窗
+        $('#myForm').show();
+    });
+
+    // 绑定表单提交事件
+    $('#myForm form').submit(function (e) {
+        // 阻止表单默认提交行为
+        e.preventDefault();
+
+        // 获取表单输入的网址
+        var url = $('#urlInput').val();
+
+        // 发送 AJAX 请求提取关键字
+        $.ajax({
+            url: 'http://api.url.com/extract_keyword',
+            type: 'POST',
+            data: {url: url},
+            success: function (data) {
+                // 成功获取关键字后，向百度发送搜索请求
+                var keyword = data.keyword;
+                var baiduUrl = `https://www.baidu.com/s?wd=${keyword}`;
+                $.get(baiduUrl, function (searchResults) {
+                    // 在页面上展示搜索结果
+                    $('body').append(searchResults);
+                });
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+
+        // 隐藏表单弹窗
+        $('#myForm').hide();
+    });
+</script>
+</body>
+</html>

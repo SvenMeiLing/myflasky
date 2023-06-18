@@ -4,7 +4,7 @@
 # Author: zzy
 import functools
 
-from flask import redirect, url_for, request, make_response
+from flask import redirect, url_for, request, make_response, g
 
 from app.models.user import UserModel
 from app.utils.cookie_key import decrypt_cookie, encrypt_cookie
@@ -27,9 +27,10 @@ def login_required(view):
 
         elif cookie is not None:  # 如果cookie中有email
             email = decrypt_cookie(cookie)
-            if get_db_session().query(UserModel).filter(UserModel.email == email).first():
+            if g.db_session().query(UserModel).filter(UserModel.email == email).first():
                 return view(*args, **kwargs)  # 验证成功则正确响应
-
-        return redirect(url_for('index'))  # 验证失败返回登录视图
+        return {
+            "error": "您还未登录"
+        }, 401  # 验证失败返回登录视图
 
     return wrapped_view

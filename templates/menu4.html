@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>示例</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/js/bootstrap.bundle.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">Home
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">Profile
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
+                            type="button" role="tab" aria-controls="messages" aria-selected="false">Messages
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="contents">
+                        <div class="lead display-5">植物病害鉴定</div>
+                        <div class="lead"><code>Plant Disease Identification</code></div>
+                        <div class="row g-0 bg-light position-relative shadow">
+                            <div class="col-md-6  mb-md-0 p-md-4">
+                                <img src="/static/images/leave.png" class="w-100 shadow" alt="...">
+                            </div>
+                            <div class="col-md-6 p-4 ps-md-0">
+                                <h5 class="mt-0">Plant Disease Diagnosis Made Easy</h5>
+                                <p class="lead">
+                                    欢迎来到我们的植物病害识别网站！我们致力于帮助园艺爱好者、农民和业余爱好者轻松准确地诊断植物病害。我们的平台采用最先进的人工智能技术，让用户可以快速识别和了解常见的植物病害。通过我们友好的用户界面，您可以轻松上传植物图片并获得即时诊断，以及有效管理疾病的建议。加入我们的社区，让您的植物健康茁壮成长！
+                                </p>
+                                <a href="#" class="stretched-link">Try</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div>jjj</div>
+                </div>
+                <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                    <div style="display:none">
+                        <div class="display-6 lead">
+                            植物病害识别器 <span class="small shadow rounded-2"
+                                                 style="color: hotpink">Plant Disease Identifier</span>
+                        </div>
+
+                        <div class="row g-0 bg-body-secondary position-relative mt-4">
+                            <div class="col-md-6 mb-md-0 p-md-4">
+                                <img src="/static/images/plant9.jpg" class="w-100" alt="...">
+                            </div>
+                            <div class="col-md-6 p-4 ps-md-0">
+                                <p style="text-indent: 2rem" class="fs-5">
+                                    使用您的手机拍摄照片，上传到我们的网站，我们的智能算法会自动识别您拍摄的植物是否患有病害，并提供对应的治疗建议。这是一款非常方便的解决方案，帮助您及时发现和治疗您的植物，以保证它们健康地成长。
+                                </p>
+                                <a href="#menuCamera" class="btn btn-link">尝试一下</a>
+
+                                <div aria-live="polite" aria-atomic="true"
+                                     class="d-flex justify-content-center align-items-center w-100 mt-5">
+
+                                    <!-- Then put toasts within -->
+                                    <div class="toast position-fixed" role="alert" aria-live="assertive"
+                                         aria-atomic="true"
+                                         id="myToast">
+                                        <div class="toast-header">
+                                            <img src="/static/images/lightning2.png" class="rounded me-2" alt="..."
+                                                 width="20"
+                                                 height="20">
+                                            <strong class="me-auto lead text-black" id="toast-title"></strong>
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="toast-body" id="toast-message">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

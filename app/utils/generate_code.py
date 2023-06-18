@@ -3,16 +3,15 @@
 # Time : 2023/3/31 22:46
 # Author: zzy
 import random
-from os import path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 from app.scripts.load_config import PROJECT_ROOT_DIR
 
-codeImgPath = path.join(PROJECT_ROOT_DIR, r"static\code_img\code.png")
-ttf_path = path.join(PROJECT_ROOT_DIR, r"static\ttf\Monaco.ttf")
+codeImgPath = PROJECT_ROOT_DIR / "static/code_img/code%s.png"
+ttf_path = PROJECT_ROOT_DIR / "static/ttf/Monaco.ttf"
 
 
-def check_code(width=128, height=38, char_length=5, font_file=ttf_path, font_size=28):
+def check_code(width=128, height=38, char_length=5, font_file=str(ttf_path), font_size=28):
     code = []
     img = Image.new(mode="RGBA", size=(width, height), color=(255, 255, 255, 25))
     draw = ImageDraw.Draw(img, mode="RGBA")
@@ -63,6 +62,3 @@ def check_code(width=128, height=38, char_length=5, font_file=ttf_path, font_siz
     return img, "".join(code)
 
 
-if __name__ == '__main__':
-    _, code = check_code()
-    print(code)

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/bootstrap.bundle.js"></script>
+
+        <style>
+            @media (max-width: 767.98px) {
+                .custom-nav {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                       type="button" role="tab" aria-controls="home" aria-selected="true">Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="menu2-tab" data-bs-toggle="tab" data-bs-target="#menu2"
+                       type="button" role="tab" aria-controls="menu2" aria-selected="false">Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="menu3-tab" data-bs-toggle="tab" data-bs-target="#menu3"
+                            type="button" role="tab" aria-controls="menu3" aria-selected="false">Messages
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="menu4-tab" data-bs-toggle="tab" data-bs-target="#menu4"
+                            type="button" role="tab" aria-controls="menu4" aria-selected="false">Messages
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="menu5-tab" data-bs-toggle="tab" data-bs-target="#menu5"
+                            type="button" role="tab" aria-controls="menu5" aria-selected="false">Messages
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="menu6-tab" data-bs-toggle="tab" data-bs-target="#menu6"
+                            type="button" role="tab" aria-controls="menu6" aria-selected="false">Messages
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="menu7-tab" data-bs-toggle="tab" data-bs-target="#menu7"
+                            type="button" role="tab" aria-controls="menu7" aria-selected="false">Messages
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div id="menu1" class="content">
+                        <div class="lead display-5">植物病害鉴定</div>
+                        <div class="lead"><code>Plant Disease Identification</code></div>
+                        <div class="row g-0 bg-light position-relative shadow">
+                            <div class="col-md-6  mb-md-0 p-md-4">
+                                <img src="/static/images/leave.png" class="w-100 shadow" alt="...">
+                            </div>
+                            <div class="col-md-6 p-4 ps-md-0">
+                                <h5 class="mt-0">Plant Disease Diagnosis Made Easy</h5>
+                                <p class="lead">
+                                    欢迎来到我们的植物病害识别网站！我们致力于帮助园艺爱好者、农民和业余爱好者轻松准确地诊断植物病害。我们的平台采用最先进的人工智能技术，让用户可以快速识别和了解常见的植物病害。通过我们友好的用户界面，您可以轻松上传植物图片并获得即时诊断，以及有效管理疾病的建议。加入我们的社区，让您的植物健康茁壮成长！
+                                </p>
+                                <a href="#" class="stretched-link">Try</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu2" role="tabpanel" aria-labelledby="menu2-tab">
+                    <div id="menu" class="content">
+                        <div id="error-alert" class="alert alert-danger d-none" role="alert"></div>
+                        <div class="display-6">上传植物相片, 以进行即时分析</div>
+                        <button type="button" class="btn btn-lg mt-4 mb-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                data-bs-whatever="@fat" style="background-color: lightseagreen">尝试一下 <span><img
+                                src="/static/images/bulb.png" width="10%" height="10%"></span>
+                        </button>
+                        <p class="lead">Upload for Instant Diagnosis
+                            <span class="small shadow" style="color: palevioletred">结果将显示在下方表格中:</span>
+                        </p>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">仅支持图片文件哦!</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <form id="myForm" enctype="multipart/form-data" method="post"
+                                          action="/file/upload">
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">请选择文件</label>
+                                                <input type="file" class="form-control" id="fileInput" name="file"
+                                                       required
+                                                       multiple
+                                                       accept="image/*"
+                                                       capture="environment"
+                                                >
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Message:</label>
+                                                <textarea class="form-control" id="message-text" readonly autofocus
+                                                          style="color: crimson">建议您一次仅提交一个文件, 否则识别效率将会降低!</textarea>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer" id="menu2Modal">
+
+                                            <div class="text-center" id="menu2Loading"></div>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    id="closeMenu2Modal">
+                                                关闭
+                                            </button>
+                                            <button type="submit" class="btn btn-primary" id="submitBtn">提交</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="overflow-x: auto">
+                            <table class="table table-light shadow">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">名称</th>
+                                        <th scope="col">耗时</th>
+                                        <th scope="col" style="width: 50%">描述</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>...</td>
+                                        <td>...</td>
+                                        <td>...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu3" role="tabpanel" aria-labelledby="menu3-tab">
+                    <div id="menu" class="content">
+                        <div class="display-6 lead">
+                            植物病害识别器 <span class="small shadow rounded-2"
+                                                 style="color: hotpink">Plant Disease Identifier</span>
+                        </div>
+
+                        <div class="row g-0 bg-body-secondary position-relative mt-4">
+                            <div class="col-md-6 mb-md-0 p-md-4">
+                                <img src="/static/images/plant9.jpg" class="w-100" alt="...">
+                            </div>
+                            <div class="col-md-6 p-4 ps-md-0">
+                                <p style="text-indent: 2rem" class="fs-5">
+                                    使用您的手机拍摄照片，上传到我们的网站，我们的智能算法会自动识别您拍摄的植物是否患有病害，并提供对应的治疗建议。这是一款非常方便的解决方案，帮助您及时发现和治疗您的植物，以保证它们健康地成长。
+                                </p>
+                                <a href="#menuCamera" class="btn btn-link">尝试一下</a>
+
+                                <div aria-live="polite" aria-atomic="true"
+                                     class="d-flex justify-content-center align-items-center w-100 mt-5">
+
+                                    <!-- Then put toasts within -->
+                                    <div class="toast position-fixed" role="alert" aria-live="assertive"
+                                         aria-atomic="true"
+                                         id="myToast">
+                                        <div class="toast-header">
+                                            <img src="/static/images/lightning2.png" class="rounded me-2" alt="..."
+                                                 width="20"
+                                                 height="20">
+                                            <strong class="me-auto lead text-black" id="toast-title"></strong>
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="toast-body" id="toast-message">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu4" role="tabpanel" aria-labelledby="menu4-tab">
+                    <div id="menu" class="content">
+                        <h2>欢迎来到文档页面</h2>
+                        <div style="position:relative; padding-bottom: 45%">
+                            <iframe src="../static/md/Myflask.html"
+                                    frameborder="0"
+                                    style="position:absolute; top:0; left:0; width:100%; height:100%;"
+                            ></iframe>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu5" role="tabpanel" aria-labelledby="menu5-tab">
+                    <div id="menu" class="content">
+                        <div class="display-6">欢迎您,
+                            <span id="welcomeUser" class="shadow" style="color: #9ec5fe">
+                        <!-- 欢迎您管理员-->
+                    </span>
+                        </div>
+                        <div class="fs-4 mt-2 lead">
+                            <span style="text-shadow: #e685b5 3px 4px 5px;">Image description</span>
+                            <span>
+                                <button class="btn btn-lg" type="button" style="background-color: #e685b5" id="refresh">
+                                    强制刷新
+                                    <span>
+                                        <img src="/static/images/refresh.png" alt="refresh" width="30" height="30"
+                                             id="rotateImg">
+                                    </span>
+                                </button>
+                            </span>
+                            <nav aria-label="..." class="d-block">
+                                <ul class="pagination" id="pageGroup">
+                                    <!--此处为页码-->
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <table class="table position-relative table-danger table-striped table-hover mt-1"
+                               id="tableAdmin"
+                               style="border-radius: 5%">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 5%">id</th>
+                                    <th scope="col" style="width: 20%">名称</th>
+                                    <th scope="col" style="width: 10%">耗时</th>
+                                    <th scope="col" style="width: 40%">描述</th>
+                                    <th scope="col" style="width: 15%">文件名称</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody2">
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu6" role="tabpanel" aria-labelledby="menu6-tab">
+                    <div id="menu" class="content">
+                        <h2>菜单5</h2>
+                        <p>这是菜单五的内容。</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="menu7" role="tabpanel" aria-labelledby="menu7-tab">
+                    <div id="menu" class="content">
+                        <h2>菜单5</h2>
+                        <p>这是菜单五的内容。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

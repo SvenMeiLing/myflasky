@@ -1,26 +1,38 @@
-{% extends 'layout.html' %}
-
-{% block h1 %}
-	Welcome to Login
-{% endblock %}
-
-{% block content %}
-
-	<form method="post">
-		<div class="form-floating mb-3 mt-3">
-			<input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-			<label for="email">Email:</label>
-		</div>
-
-		<div class="form-floating mt-3 mb-3">
-			<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-			<label for="pwd">Password:</label>
-		</div>
-
-		<div class="form-floating mt-3 mb-3">
-			<input type="submit" class="form-control btn btn-outline-primary" name="" value="">
-			<label for="pwd" class="" style="font-size: 30px;">Submit  <code><<<</code></label>
-		</div>
-	</form>
-
-{% endblock %}
+<div class="masking rounded-3 col-12 col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12 d-flex align-items-md-center justify-content-md-between animate__animated animate__fadeInTopRight">
+    <div class="container-fluid masking-child mx-3 mx-md-auto">
+        <form autocomplete="off" id="loginForm">
+            <div class="row">
+                <span style="color: crimson" id="error"></span>
+                <div class="col-6">
+                    <input type="text" placeholder="请输入邮箱:" name="email" class="input" required autofocus>
+                </div>
+                <div class="col-6">
+                    <input type="password" placeholder="请输入密码:" name="password" class="input"
+                           required>
+                </div>
+            </div>
+            <div class="row  mb-xxl-2 mb-md-3">
+                <div class="col-6 col-xxl-6 col-xl-6 col-md-6 col-sm-6">
+                    <img src="/static/code_img/code.png" id="code" style="width: 80% ;height: 70%"
+                         onclick="updateCode()">
+                </div>
+                <div class="col-6 col-xxl-6 col-xl-6 col-md-6 col-sm-6">
+                    <input type="text" name="code" placeholder="输入验证码:" class="input" required>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn text-xxl text-xl text-lg text-md text-sm text-um"
+                        style="background-color: rgba(255, 255, 255, 40%)">
+                    登录
+                    <svg class="icon"
+                         style="width: 1rem;height: 1rem;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                         viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg"
+                         p-id="1579">
+                        <use xlink:href="#myclick"></use>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

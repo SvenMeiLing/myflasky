@@ -25,5 +25,16 @@ def get_baike(keyword):
         return "未找到"
 
 
+def get_plants_description(name):
+    """
+    :param name: 病害的名称 ex: 葡萄黑腐病
+    :return: string
+    """
+    from ..db.plants_data import PLANTS_DESCRIPTION
+    return PLANTS_DESCRIPTION.get(
+        name, "此病害名称暂未收录描述信息, 等待后续拓展更新..."
+    )
+
+
 if __name__ == '__main__':
     print(get_baike('番茄叶斑病'))

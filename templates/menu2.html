@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Title</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/bootstrap.bundle.js"></script>
+        <style>
+            @media (min-width: 990px) {
+                /* 屏幕宽度>=990 */
+                #storage {
+                    display: none;
+                }
+
+            }
+
+            @media (max-width: 990px) {
+                /* 屏幕宽度<=990 */
+                #aside {
+                    display: none;
+                }
+            }
+
+            aside {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 20%;
+                height: 100%;
+                overflow-y: auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar bg-body-tertiary sticky-top">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" id="storage"
+                            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand m-auto" href="#" style="width: 200px">植物识别</a>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                         aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <nav class="nav flex-xxl-column flex-sm-column flex-row nav-pills me-auto mb-2 mb-lg-0"
+                                 id="menuBar">
+                                <a class="nav-link active lead fs-6" aria-current="page" href="#menu1">
+                                    <img src="/static/images/home2.png" width="20" height="20">
+                                    访客页面
+                                </a>
+                                <a class="nav-link" href="#menu2">
+                                    <img src="/static/images/upload2.png" width="20"
+                                         height="20">
+                                    上传文件
+                                </a>
+                                <a class="nav-link" href="#menu3" id="aMenu3">
+                                    <img src="/static/images/camera.png" width="20" height="20">
+                                    相机拍摄
+                                </a>
+                                <a class="nav-link" href="#menu4">
+                                    <img src="/static/images/about2.png" width="20" height="20">
+                                    关于我们
+                                </a>
+
+                                <a class="nav-link" href="#menu5" id="linkMenu5">
+                                    <img src="/static/images/data2.png" width="20" height="20">
+                                    数据面板
+                                </a>
+
+                                <a class="nav-link" href="#menu6">
+                                    <img src="/static/images/crops.png" width="20"
+                                         height="20">
+                                    农业推荐
+                                </a>
+
+                                <a class="nav-link disabled" href="#menu7">
+                                    <img src="/static/images/study.png" width="20"
+                                         height="20">
+                                    未知页
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container-xxl bd-gutter mt-3 my-md-4" id="aside">
+            <div class="row">
+                <div class="col-3">
+                    <aside>
+                        <nav class="nav flex-xxl-column flex-sm-column flex-row nav-pills me-auto mb-2 mb-lg-0"
+                             id="menuBar">
+                            <a class="nav-link active lead fs-6" aria-current="page"
+                               id="menu1-tab" data-bs-toggle="tab" data-bs-target="#menu1"
+                            >
+                                <img src="/static/images/home2.png" width="20" height="20">
+                                访客页面
+                            </a>
+                            <a class="nav-link" href="#menu2"
+                               id="menu2-tab" data-bs-toggle="tab" data-bs-target="#menu2"
+                            >
+                                <img src="/static/images/upload2.png" width="20"
+                                     height="20">
+                                上传文件
+                            </a>
+                            <a class="nav-link" href="#menu3" id="aMenu3"
+                               id="menu3-tab" data-bs-toggle="tab" data-bs-target="#menu3"
+                            >
+                                <img src="/static/images/camera.png" width="20" height="20">
+                                相机拍摄
+                            </a>
+                            <a class="nav-link" href="#menu4"
+                               id="menu3-tab" data-bs-toggle="tab" data-bs-target="#menu3"
+                            >
+                                <img src="/static/images/about2.png" width="20" height="20">
+                                关于我们
+                            </a>
+
+                            <a class="nav-link" href="#menu5" id="linkMenu5">
+                                <img src="/static/images/data2.png" width="20" height="20">
+                                数据面板
+                            </a>
+
+                            <a class="nav-link" href="#menu6">
+                                <img src="/static/images/crops.png" width="20"
+                                     height="20">
+                                农业推荐
+                            </a>
+
+                            <a class="nav-link disabled" href="#menu7">
+                                <img src="/static/images/study.png" width="20"
+                                     height="20">
+                                未知页
+                            </a>
+                        </nav>
+                    </aside>
+                </div>
+                <div class="col-9">
+                    <div style="width: 700px;height: auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <main class="order-1">
+
+            </main>
+        </div>
+
+        <div>
+
+        </div>
+    </body>
+</html>

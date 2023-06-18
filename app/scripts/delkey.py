@@ -8,7 +8,4 @@ def send_email(link, *receiver):
         [*(receiver if receiver else '2744726697@qq.com')],  # 收件人
         link
     ]
-    print(msg)
 
-
-send_email("asda", '222@请求.com', "dsads")

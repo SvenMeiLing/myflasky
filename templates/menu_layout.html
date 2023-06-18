@@ -1,257 +1,431 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Forest</title>
-        <link rel="stylesheet" href="/static/css/menu_layout.css">  <!-- 引入页面专属样式-->
-        <link rel="icon" href="/static/images/plant6.png">  <!-- 引入图标-->
-        <link rel="stylesheet" href="/static/css/bootstrap.min.css">    <!-- 引入bootstrap5-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Forest</title>
+    <link rel="stylesheet" href="/static/css/menu_layout.css">  <!-- 引入页面专属样式-->
+    <link rel="icon" href="/static/images/plant6.png">  <!-- 引入图标-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">    <!-- 引入bootstrap5-->
+    <link rel="stylesheet" href="/static/css/animate.css">
 
+    <!-- 引入脚本-->
+    <script src="/static/js/jquery-3.6.3.min.js"></script>
+    <script src="/static/js/sweetalert2@11.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
 
-        <!-- 引入脚本-->
-        <script src="/static/js/jquery-3.6.3.min.js"></script>
-        <script src="/static/js/sweetalert2@11.js"></script>
-        <script src="/static/js/bootstrap.bundle.min.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/menu_layout.js"></script>
+    <script src="/static/js/camera.js"></script>
+    <script src="/static/js/pagination.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/get_crops.js"></script>
+    <script src="/static/js/axios.min.js"></script>
+    <script src="/static/js/echarts-5.4.2.min.js"></script>
+    <script src="/static/js/echartsShow.js"></script>
 
-        <script src="/static/js/menu_layout.js"></script>
-        <script src="/static/js/camera.js"></script>
-        <script src="/static/js/pagination.js"></script>
-        <script src="/static/js/mobile.js"></script>
+</head>
+<body class="overflow-scroll position-relative">
+<nav class="navbar bg-body-tertiary sticky-top">
+    <!--顶部导航栏-->
+    <div class="container-fluid">
+        <!--控制左菜单按钮-->
+        <button class="navbar-toggler d-xxl-none d-xl-none d-lg-none" type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbarLeft"
+                aria-controls="offcanvasNavbarLeft">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <!--logo图片和文字-->
+        <a class="navbar-brand" href="#">
+            <img src="/static/images/plant6.png" alt="Logo" width="30px" height="24px"
+                 class="d-inline-block align-text-top">
+            智慧农业
+        </a>
 
-    </head>
-    <body>
-        <nav class="navbar bg-body-tertiary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="/static/images/plant6.png" alt="Logo" width="30px" height="24px"
-                         class="d-inline-block align-text-top">
-                    Forest
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar"
-                        aria-controls="offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                     aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">用户<span id="emailName"
-                                                                                        style="color: #6ea8fe">{{ email }}</span>您好
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
-                                id="r-bar"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">首页</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="logout">登出</a>
-                            </li>
-                        </ul>
-                    </div>
+        <!--控制右菜单按钮-->
+        <button class="border-0 navbar-toggler d-flex order-3 p-2"
+                type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbarRight"
+                aria-controls="offcanvasNavbarRight"
+                id="rightMenuButton"
+        >
+            <img src="/static/images/ellipsis.png" alt="" style="width: 30px;height:30px">
+        </button>
 
-                </div>
-
+        <!--左菜单内容-->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbarLeft"
+             style="min-width: 30%;max-width: 40%"
+             aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">菜单Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
             </div>
-        </nav>
+            <div class="offcanvas-body" style="width: 100%">
+                <nav class="nav flex-xxl-column flex-sm-column flex-row nav-pills me-auto mb-2 mb-lg-0"
+                     id="menuBar"
+                >
+                    <a class="nav-link active lead fs-6" aria-current="page" href="#menu1">
+                        <img src="/static/images/home2.png" width="20" height="20">
+                        访客页面
+                    </a>
+                    <a class="nav-link" href="#menu2">
+                        <img src="/static/images/upload2.png" width="20"
+                             height="20">
+                        上传文件
+                    </a>
+                    <a class="nav-link" href="#menu3" id="aMenu3">
+                        <img src="/static/images/camera.png" width="20" height="20">
+                        相机拍摄
+                    </a>
+                    <a class="nav-link" href="#menu4">
+                        <img src="/static/images/about2.png" width="20" height="20">
+                        关于我们
+                    </a>
 
+                    <a class="nav-link" href="#menu5" id="linkMenu5">
+                        <img src="/static/images/data2.png" width="20" height="20">
+                        数据面板
+                    </a>
 
-        <div class="container-fluid mt-5" id="con-box">
-            <div class="row">
-                <div class="col-xxl-2 col-lg-3 col-md-3 col-sm-12 col-12 mt-4 mt-lg-5 mt-xxl-5">
-                    <nav class="nav  flex-xxl-column flex-sm-column flex-row nav-pills me-auto mb-2 mb-lg-0"
-                         id="menuBar">
-                        <a class="nav-link active lead fs-6" aria-current="page" href="#menu1">
-                            <img src="/static/images/home2.png" width="20" height="20">
-                            访客页面
-                        </a>
-                        <a class="nav-link" href="#menu2">
-                            <img src="/static/images/upload2.png" width="20"
-                                 height="20">
-                            上传文件
-                        </a>
-                        <a class="nav-link" href="#menu3" id="aMenu3">
-                            <img src="/static/images/camera.png" width="20" height="20">
-                            相机拍摄
-                        </a>
-                        <a class="nav-link" href="#menu4">
-                            <img src="/static/images/about2.png" width="20" height="20">
-                            关于我们
-                        </a>
+                    <a class="nav-link" href="#menu6" id="linkMenu6">
+                        <img src="/static/images/crops.png" width="20"
+                             height="20">
+                        农业推荐
+                    </a>
 
-                        <a class="nav-link" href="#menu5" id="linkMenu5">
-                            <img src="/static/images/data2.png" width="20" height="20">
-                            数据面板
-                        </a>
+                    <a class="nav-link" href="#menu7" id="linkMenu7">
+                        <img src="/static/images/diagnosis.png" width="20"
+                             height="20">
+                        病害诊断
+                    </a>
 
-                        <a class="nav-link disabled" href="#menu6">
-                            <img src="/static/images/study.png" width="20"
-                                 height="20">
-                            未知页
-                        </a>
-                    </nav>
+                    <a class="nav-link" href="#menu8" id="linkMenu8">
+                        <img src="/static/images/Treatment.png" width="20"
+                             height="20">
+                        治疗方案
+                    </a>
+                    <a class="nav-link disabled" href="#menu9" id="linkMenu9">
+                        <img src="/static/images/study.png" width="20"
+                             height="20">
+                        未知页
+                    </a>
+                </nav>
+            </div>
+
+        </div>
+
+        <!--右菜单内容-->
+        <div class="offcanvas offcanvas-end" tabindex="-1"
+             id="offcanvasNavbarRight" style="max-width: 50%;min-width: 20%"
+             aria-labelledby="offcanvasNavbarLabel"
+        >
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">用户
+                    <span id="emailName" class="fillEmail"
+                          style="color: #6ea8fe">{{ hh }}</span>您好
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+                        id="r-bar"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout">登出</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<div class="container-fluid mt-2" id="con-box">
+    <!--整行内容 也是可视区域最大的部分-->
+    <div class="row">
+        <!---菜单栏-->
+        <aside class="col-xxl-3 col-lg-2 col-md-3 col-sm-12 col-12 mt-4 mt-lg-4 mt-xxl-4" id="aside">
+            <nav class="nav flex-xxl-column flex-sm-column flex-row nav-pills me-auto mb-2 mb-lg-0"
+                 id="menuBar"
+            >
+                <a class="nav-link active lead fs-6" aria-current="page" href="#menu1">
+                    <img src="/static/images/home2.png" width="20" height="20">
+                    访客页面
+                </a>
+                <a class="nav-link" href="#menu2">
+                    <img src="/static/images/upload2.png" width="20"
+                         height="20">
+                    上传文件
+                </a>
+                <a class="nav-link" href="#menu3" id="aMenu3">
+                    <img src="/static/images/camera.png" width="20" height="20">
+                    相机拍摄
+                </a>
+                <a class="nav-link" href="#menu4">
+                    <img src="/static/images/about2.png" width="20" height="20">
+                    关于我们
+                </a>
+
+                <a class="nav-link" href="#menu5" id="linkMenu5">
+                    <img src="/static/images/data2.png" width="20" height="20">
+                    数据面板
+                </a>
+
+                <a class="nav-link" href="#menu6">
+                    <img src="/static/images/crops.png" width="20"
+                         height="20">
+                    农业推荐
+                </a>
+
+                <a class="nav-link" href="#menu7">
+                    <img src="/static/images/diagnosis.png" width="20"
+                         height="20">
+                    病害诊断
+                </a>
+                <a class="nav-link" href="#menu8">
+                    <img src="/static/images/Treatment.png" width="20"
+                         height="20">
+                    治疗方案
+                </a>
+                <a class="nav-link disabled" href="#menu9">
+                    <img src="/static/images/study.png" width="20"
+                         height="20">
+                    未知页
+                </a>
+            </nav>
+        </aside>
+        <!--内容栏-->
+        <div class="col-xxl-9 col-lg-auto col-md-auto col-sm-12 col-12 mt-4" id="main">
+            <main>
+                <div id="menu1" class="content">
+                    <div class="lead display-5">植物病害鉴定</div>
+                    <div class="lead"><code>Plant Disease Identification</code></div>
+                    <div class="row g-0 bg-light position-relative shadow">
+                        <div class="col-md-6  mb-md-0 p-md-4">
+                            <img src="/static/images/leave.png" class="w-100 shadow" alt="...">
+                        </div>
+                        <div class="col-md-6 p-4 ps-md-0">
+                            <h5 class="mt-0">Plant Disease Diagnosis Made Easy</h5>
+                            <p class="lead">
+                                欢迎来到我们的植物病害识别网站！我们致力于帮助园艺爱好者、农民和业余爱好者轻松准确地诊断植物病害。我们的平台采用最先进的人工智能技术，让用户可以快速识别和了解常见的植物病害。通过我们友好的用户界面，您可以轻松上传植物图片并获得即时诊断，以及有效管理疾病的建议。加入我们的社区，让您的植物健康茁壮成长！
+                            </p>
+                            <a href="#" class="stretched-link">Try</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-9 col-lg-9 mt-5">
-                    <div id="menu1" class="content">
-                        <div class="lead display-5">植物病害鉴定</div>
-                        <div class="lead"><code>Plant Disease Identification</code></div>
-                        <div class="row g-0 bg-light position-relative shadow">
-                            <div class="col-md-6  mb-md-0 p-md-4">
-                                <img src="/static/images/leave.png" class="w-100 shadow" alt="...">
-                            </div>
-                            <div class="col-md-6 p-4 ps-md-0">
-                                <h5 class="mt-0">Plant Disease Diagnosis Made Easy</h5>
-                                <p class="lead">
-                                    欢迎来到我们的植物病害识别网站！我们致力于帮助园艺爱好者、农民和业余爱好者轻松准确地诊断植物病害。我们的平台采用最先进的人工智能技术，让用户可以快速识别和了解常见的植物病害。通过我们友好的用户界面，您可以轻松上传植物图片并获得即时诊断，以及有效管理疾病的建议。加入我们的社区，让您的植物健康茁壮成长！
-                                </p>
-                                <a href="#" class="stretched-link">Try</a>
+                <div id="menu2" class="content" style="display:none">
+                    <div id="error-alert" class="alert alert-danger d-none" role="alert"></div>
+                    <div class="alert alert-warning d-flex align-items-center d-none" role="alert">
+                        <div id="error-warning-text">
+                        </div>
+                    </div>
+                    <div class="display-6">上传植物相片, 以进行即时分析</div>
+                    <button type="button" class="btn btn-lg mt-4 mb-1" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            data-bs-whatever="@fat" style="background-color: lightseagreen">尝试一下 <span><img
+                            src="/static/images/bulb.png" width="10%" height="10%"></span>
+                    </button>
+                    <p class="lead">Upload for Instant Diagnosis
+                        <span class="small shadow" style="color: palevioletred">结果将显示在下方表格中:</span>
+                    </p>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">仅支持图片文件哦!</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <form id="myForm" enctype="multipart/form-data" method="post"
+                                      action="/file/upload"
+                                >
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="recipient-name"
+                                                   class="col-form-label">请选择文件</label>
+                                            <input type="file" class="form-control" id="fileInput" name="file"
+                                                   required
+                                                   multiple
+                                                   accept="image/*"
+                                            >
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text" readonly autofocus
+                                                      style="color: crimson">建议您一次仅提交一个文件, 否则识别效率将会降低!</textarea>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer" id="menu2Modal">
+
+                                        <div class="text-center" id="menu2Loading"></div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                id="closeMenu2Modal">
+                                            关闭
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-primary"
+                                                id="submitBtn"
+                                        >提交
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div id="menu2" class="content" style="display:none">
-                        <div id="error-alert" class="alert alert-danger d-none" role="alert"></div>
-                        <div class="display-6">上传植物相片, 以进行即时分析</div>
-                        <button type="button" class="btn btn-lg mt-4 mb-1" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                data-bs-whatever="@fat" style="background-color: lightseagreen">尝试一下 <span><img
-                                src="/static/images/bulb.png" width="10%" height="10%"></span>
-                        </button>
-                        <p class="lead">Upload for Instant Diagnosis
-                            <span class="small shadow" style="color: palevioletred">结果将显示在下方表格中:</span>
-                        </p>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">仅支持图片文件哦!</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    <div style="overflow-x: auto">
+                        <table class="table table-light shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">名称</th>
+                                <th scope="col">耗时/置信度</th>
+                                <th scope="col" style="width: 50%">描述</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            <tr>
+                                <th scope="row"></th>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div id="menu3" class="content" style="display:none">
+                    <div class="display-6 lead">
+                        植物病害识别器 <span class="small shadow rounded-2"
+                                             style="color: hotpink">Plant Disease Identifier</span>
+                    </div>
+
+                    <div class="row g-0 bg-body-secondary position-relative mt-4">
+                        <div class="col-md-6 mb-md-0 p-md-4">
+                            <img src="/static/images/plant9.jpg" class="w-100" alt="...">
+                        </div>
+                        <div class="col-md-6 p-4 ps-md-0">
+                            <p style="text-indent: 2rem" class="fs-5">
+                                使用您的手机拍摄照片，上传到我们的网站，我们的智能算法会自动识别您拍摄的植物是否患有病害，并提供对应的治疗建议。这是一款非常方便的解决方案，帮助您及时发现和治疗您的植物，以保证它们健康地成长。
+                            </p>
+                            <a href="#menuCamera" class="btn btn-link">尝试一下</a>
+
+                            <div aria-live="polite" aria-atomic="true"
+                                 class="d-flex justify-content-center align-items-center w-100 mt-5">
+
+                                <!-- Then put toasts within -->
+                                <div class="toast position-fixed" role="alert" aria-live="assertive"
+                                     aria-atomic="true"
+                                     id="myToast">
+                                    <div class="toast-header">
+                                        <img src="/static/images/lightning2.png" class="rounded me-2" alt="..."
+                                             width="20"
+                                             height="20">
+                                        <strong class="me-auto lead text-black" id="toast-title"></strong>
+
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast"
                                                 aria-label="Close"></button>
                                     </div>
-                                    <form id="myForm" enctype="multipart/form-data" method="post"
-                                          action="/file/upload">
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="recipient-name" class="col-form-label">请选择文件</label>
-                                                <input type="file" class="form-control" id="fileInput" name="file"
-                                                       required
-                                                       multiple
-                                                       accept="image/*"
-                                                       capture="environment"
-                                                >
+                                    <div class="toast-body" id="toast-message">
 
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">Message:</label>
-                                                <textarea class="form-control" id="message-text" readonly autofocus
-                                                          style="color: crimson">建议您一次仅提交一个文件, 否则识别效率将会降低!</textarea>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer" id="menu2Modal">
-
-                                            <div class="text-center" id="menu2Loading"></div>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                                    id="closeMenu2Modal">
-                                                关闭
-                                            </button>
-                                            <button type="submit" class="btn btn-primary" id="submitBtn">提交</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="overflow-x: auto">
-                            <table class="table table-light shadow">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">名称</th>
-                                        <th scope="col">耗时</th>
-                                        <th scope="col" style="width: 50%">描述</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody">
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                    <div id="menu3" class="content" style="display:none">
-                        <div class="display-6 lead">
-                            植物病害识别器 <span class="small shadow rounded-2"
-                                                 style="color: hotpink">Plant Disease Identifier</span>
-                        </div>
-
-                        <div class="row g-0 bg-body-secondary position-relative mt-4">
-                            <div class="col-md-6 mb-md-0 p-md-4">
-                                <img src="/static/images/plant9.jpg" class="w-100" alt="...">
-                            </div>
-                            <div class="col-md-6 p-4 ps-md-0">
-                                <p style="text-indent: 2rem" class="fs-5">
-                                    使用您的手机拍摄照片，上传到我们的网站，我们的智能算法会自动识别您拍摄的植物是否患有病害，并提供对应的治疗建议。这是一款非常方便的解决方案，帮助您及时发现和治疗您的植物，以保证它们健康地成长。
-                                </p>
-                                <a href="#menuCamera" class="btn btn-link">尝试一下</a>
-
-                                <div aria-live="polite" aria-atomic="true"
-                                     class="d-flex justify-content-center align-items-center w-100 mt-5">
-
-                                    <!-- Then put toasts within -->
-                                    <div class="toast position-fixed" role="alert" aria-live="assertive"
-                                         aria-atomic="true"
-                                         id="myToast">
-                                        <div class="toast-header">
-                                            <img src="/static/images/lightning2.png" class="rounded me-2" alt="..."
-                                                 width="20"
-                                                 height="20">
-                                            <strong class="me-auto lead text-black" id="toast-title"></strong>
-
-                                            <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="toast-body" id="toast-message">
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                    <div id="menu4" class="content" style="display:none">
-                        <h2>欢迎来到文档页面</h2>
-                        <div style="position:relative; padding-bottom: 45%">
-                            <iframe src="../static/md/Myflask.html"
-                                    frameborder="0"
-                                    style="position:absolute; top:0; left:0; width:100%; height:100%;"
-                            ></iframe>
+
+
+                </div>
+                <div id="menu4" class="content" style="display:none">
+                    <h2>感谢以下优质开源项目, 为我们的开发提供便利</h2>
+                    <br>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="lead">前端技术栈:</span>
+                                <div class="row" id="front">
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 fs-4">
+                                        <img src="/static/images/bootstrap5.png"> Bootstrap5
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 fs-4">
+                                        <img src="/static/images/jquery-icon.png"> jQuery
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 fs-4">
+                                        <img src="/static/images/js-icon.png"> JavaScript
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 col-4 ">
+                                        <img src="/static/images/SweetAlert2.png">
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 fs-4">
+                                        <img src="/static/images/vue.png"> Vue3
+                                    </div>
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 fs-4">
+                                        <img src="/static/images/animate-icon.jpg">
+                                    </div>
+                                </div>
+                                <hr>
+                                <span class="lead">后端技术栈:</span>
+                                <div>
+                                            <span>
+                                                <img src="/static/images/python-logo.png" alt="" width="200">
+                                            </span>
+                                    <span>
+                                                <img src="/static/images/flask-icon.webp" alt="" width="200">
+                                            </span>
+                                    <span>
+                                                <img src="/static/images/sqlite3-icon.png" alt="" width="200">
+                                            </span>
+                                    <span class="display-5">
+                                                <img src="/static/svg/redis.svg" alt="" width="90"> Redis
+                                            </span>
+                                </div>
+                                <hr>
+                                <span class="lead">算法模块:</span>
+                                <div>
+                                    <span><img src="/static/svg/pytorch.svg" alt="" width="200"></span>
+                                    <span class="display-5">
+                                                <img class="hero-logo" src="/static/svg/numpy.svg" width="100">NumPy
+                                            </span>
+                                    <span class="display-5">
+                                                <img class="hero-logo" src="/static/svg/matplotlib.svg" width="250">
+                                            </span>
+                                    <span class="display-5">
+                                                <img class="hero-logo" src="/static/svg/scipy.svg" width="70">SciPy
+                                            </span>
+                                </div>
+                                <hr>
+                                <span class="lead">服务器:</span>
+                                <div>
+                                    <span><img src="/static/images/centos.png" alt="" width="150"></span>
+                                    <span><img src="/static/images/nginx.png" alt="" width="150"></span>
+                                    <span><img src="/static/images/uwsgi.png" alt="" width="150"></span>
+                                </div>
+                                <hr>
+                            </div>
                         </div>
-
                     </div>
-                    <div id="menu5" class="content" style="display:none">
-                        <div class="display-6">欢迎您,
-                            <span id="welcomeUser" class="shadow" style="color: #9ec5fe">
+                </div>
+                <div id="menu5" class="content" style="display:none">
+                    <div class="display-6">欢迎您,
+                        <span id="welcomeUser" class="shadow fillEmail" style="color: #9ec5fe">
                         <!-- 欢迎您管理员-->
                     </span>
-                        </div>
-                        <div class="fs-4 mt-2 lead">
-                            <span style="text-shadow: #e685b5 3px 4px 5px;">Image description</span>
-                            <span>
+                    </div>
+                    <div class="fs-4 mt-2 lead">
+                        <span style="text-shadow: #e685b5 3px 4px 5px;">Image description</span>
+                        <span>
                                 <button class="btn btn-lg" type="button" style="background-color: #e685b5" id="refresh">
                                     强制刷新
                                     <span>
@@ -259,88 +433,273 @@
                                              id="rotateImg">
                                     </span>
                                 </button>
+
                             </span>
-                            <nav aria-label="..." class="d-block">
-                                <ul class="pagination" id="pageGroup">
-                                    <!--此处为页码-->
-                                </ul>
-                            </nav>
+                        <nav aria-label="..." class="d-block">
+                            <ul class="pagination" id="pageGroup">
+                                <!--此处为页码-->
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <table class="table rounded-3 shadow position-relative table-danger table-striped table-hover mt-1"
+                           id="tableAdmin"
+                           style="border-radius: 5%">
+
+
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%">id</th>
+                            <th scope="col" style="width: 20%">名称</th>
+                            <th scope="col" style="width: 10%">耗时</th>
+                            <th scope="col" style="width: 40%">描述</th>
+                            <th scope="col" style="width: 15%">置信度</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody2">
+                        <tr>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-center animate__animated" id="spinner">
+                        <strong>Loading...</strong>
+                        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                    </div>
+
+                </div>
+                <div id="menu6" class="content" style="display:none;">
+                    <div class="row mb-3">
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-floating shadow-sm">
+                                <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                    <!--等待省份选项-->
+                                </select>
+                                <label for="floatingSelect">选择地区</label>
+                            </div>
                         </div>
-
-                        <table class="table position-relative table-danger table-striped table-hover mt-1"
-                               id="tableAdmin"
-                               style="border-radius: 5%">
-
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="width: 5%">id</th>
-                                    <th scope="col" style="width: 20%">名称</th>
-                                    <th scope="col" style="width: 10%">耗时</th>
-                                    <th scope="col" style="width: 40%">描述</th>
-                                    <th scope="col" style="width: 15%">文件名称</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody2">
-
-                            </tbody>
-                        </table>
-
-
-                    </div>
-                    <div id="menu6" class="content" style="display:none">
-                        <h2>菜单5</h2>
-                        <p>这是菜单五的内容。</p>
-                    </div>
-                    <div id="menuCamera" class="content" style="display: none">
-                        <div class="container ms-xxl-5 ms-md-2 ms-md-1 ms-0">
-                            <div class="lead fs-4">拍摄控制台</div>
-                            <div class="row">
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-12 mt-2 mb-4">
-                                    <div id="camera">
-                                        <img src="/static/images/cameraicon.svg" alt="Camera Image"/>
-                                        <video controls playsinline></video>
-                                    </div>
-                                    <div class="mt-2">
-                                        <button id="toggle" class="btn btn-sm" style="background-color: deepskyblue">
-                                            拍摄
-                                        </button>
-                                        <button id="upload" class="btn btn-sm" style="background-color: crimson">
-                                            上传
-                                        </button>
-                                        <button id="toggleCamera" class="btn btn-sm" style="background-color: #86b7fe">
-                                            切换摄像头
-                                        </button>
-
-                                    </div>
-
-                                </div>
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-12">
-                                    <table class="table table-striped table-hover rounded">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">名称</th>
-                                                <th scope="col">耗时</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbody3">
-                                            <tr>
-                                                <td>...</td>
-                                                <td>...</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="rounded-2 shadow-sm border border-1">
+                                <div class="lead">选择展示片数: <span class="lead" id="slideNum">2</span></div>
+                                <input type="range" class="form-range"
+                                       min="2" max="20" step="1" width="100%" height="100%" value="2"
+                                       id="customRange3"
+                                >
                             </div>
 
-                            <a href="#menu3" class="">返回</a>
                         </div>
-
+                    </div>
+                    <div class="row" id="cardGroup">
+                        <!--card-->
 
                     </div>
                 </div>
-            </div>
+                <div id="menu7" class="content container" style="display:none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>植物病害诊断与治疗方案</h1>
+                            <p class="font-monospace shadow-lg" style="color:#75b798;font-size: 1.5rem" id="strip">
+                                Diagnosis and treatment
+                            </p>
+                            <p class="lead text-primary-emphasis link-primary" style="text-indent: 2em">
+                                提供了一套完整的分析流程, 无论是从<a href="#" id="focus-btn">个人数据</a>, 或是群体用户,
+                                我们面面俱到.
+                                从以下图表中我们可以清晰看出数据走向, 在后续我们会推介更多的图表, 但不仅限于单调的数据展示,
+                                而是灵活的运用数据分析,
+                                使得数据产生更高的价值.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-1 mt-lg-0">
+                            <div id="echarts" class="rounded"
+                                 style="border: 0.15rem solid #75b798;width: auto;height: 400px"></div>
+                        </div>
+                        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-1 mt-lg-0">
+                            <div id="echarts2" class="rounded"
+                                 style="border: 0.15rem solid #75b798;width: auto;height: 400px"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <div class="card" style="width: auto;">
+                                <div class="card-header fs-5"
+                                     style="background-color: silver">
+                                    分析报告
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <samp id="disease-name" class="lead"></samp>的占比率较大, 需要关注
+                                    </li>
+                                    <li class="list-group-item">
+                                        这是 <span style="color: #e685b5">chart1</span>的分析报告
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="width: auto;">
+                                <div class="card-header fs-5">
+                                    分析报告 <samp>渐变堆叠面积图</samp>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        来源于数据中台, 全用户数据分析
+                                    </li>
+                                    <li class="list-group-item">
+                                        这是<span style="color: #e685b5">chart2</span>的分析报告
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+
+                <div id="menu8" class="content" style="display:none">
+                    <div class="container">
+                        <div class="row">
+                            <h2>收录以下治疗方案</h2>
+                            <p class="shadow-sm rounded font-monospace fs-4" style="color: lightseagreen">Include the
+                                following
+                                treatment
+                                plans</p>
+                        </div>
+                        <div class="row" id="scroll">
+                            <div class="col-4">
+                                <div id="list-example" class="list-group">
+                                    <a class="list-group-item list-group-item-action"
+                                       href="#list-item-1">葡萄黑腐病</a>
+                                    <a class="list-group-item list-group-item-action"
+                                       href="#list-item-2">番茄叶斑病</a>
+                                    <a class="list-group-item list-group-item-action"
+                                       href="#list-item-3">苹果黑星病</a>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
+                                     class="scrollspy-example" style="overflow-y: scroll;max-height: 300px"
+                                     tabindex="0">
+                                    <h4 id="list-item-1">葡萄黑腐病</h4>
+                                    <p>
+                                        葡萄黑腐病是一种病害，会导致葡萄皮变黑并烂掉。为了预防和治疗这种病害，我们可以采用化学药剂或生物农药来喷洒到葡萄上。但是化学药剂可能会加重环境负担，所以如果我们用化学药剂，就应该选择对环境无害的，施药次数和剂量要适当。另外，我们还可以通过定期检查和预防性喷药来发现和处理病害。当然，做好葡萄栽培管理、保持葡萄生长环境的清洁和通风等预防措施也非常重要。这些综合措施，有助于控制葡萄黑腐病的发生和传播。
+                                    </p>
+                                    <h4 id="list-item-2">番茄叶斑病</h4>
+                                    <p>
+                                        一、预防措施：
+
+                                        1.选用抗病性较强的抗病品种种植；
+
+                                        2.尽量不要连作番茄，应实行轮作，每三到四年一次；
+
+                                        3.在番茄生长过程中，尽量保持空气流通，并避免浇水过多；
+
+                                        4.注意病虫害防治，避免番茄遭受其他病虫害的侵害，增加其免疫能力；
+
+                                        5.保持番茄生长环境清洁，减少病菌的传播和生长。
+
+                                        二、治疗手段：
+
+                                        1.采用化学药剂喷雾，可使用三氯甲烷、敌百虫等，严格按照药剂使用说明使用；
+
+                                        2.使用土壤消毒剂进行土壤消毒，可用五氯酚钠、甲基溴等消毒剂进行土壤消毒；
+
+                                        3.使用生物制剂进行防治，可用寄生性真菌制剂、生物剂等进行防治。这些制剂可以有针对性地攻击病菌，从而消灭病菌的危害；
+
+                                        4.对于病情较为轻微的情况，可以采用手工摘除感染的部分叶片，及时清理感染的植株，并适当增加植物的营养供给。
+                                    </p>
+                                    <h4 id="list-item-3">苹果黑星病</h4>
+                                    <p>
+                                        一、防治方法：
+
+                                        1.选用抗病性强的抗病品种种植；
+
+                                        2.注意施肥，以增强苹果树的生长力和免疫力；
+
+                                        3.及时进行苹果树的疏果和修剪，保持树冠通风透光，不利于病害的发生；
+
+                                        4.定期清除果园周围的枯叶和果实残渣等，减少病菌的栖息和繁殖；
+
+                                        5.采用旋风雾化机或其他机械喷雾设备，定期喷洒苹果黑星病的化学药剂。
+
+                                        二、治疗手段：
+
+                                        1.苹果黑星病初期病斑可以用50%多菌灵水剂、50%敌菌灵水剂、20%硫磺乳剂等剂型进行喷洒。
+
+                                        2.若已出现大量的黑星病菌，则需使用强效杀菌剂进行喷洒。可选用75%百菌清可湿性粉剂、50%杀菌利斯可湿性粉剂，50%百菌清悬浮剂等，直接喷洒病叶上部位，覆盖面积尽量大。
+
+                                        3.针对严重感染病害的果园，可选用草酸铜、醋酸亚铜、漂白粉等多种消毒剂进行喷洒。
+
+                                        注意：在使用农药和消毒剂时，请遵循说明书上的指示，并采用适当的安全措施以保证人身安全。同时，应该定期更换喷雾器材，以免扩散或侵袭其他病虫害。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="menu9" class="content" style="display:none">
+                    <h2>未知</h2>
+                    <p>unknown</p>
+                </div>
+                <div id="menuCamera" class="content" style="display: none">
+                    <div class="container ms-xxl-5 ms-md-2 ms-md-1 ms-0">
+                        <div class="lead fs-4">拍摄控制台</div>
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-12 mt-2 mb-4">
+                                <div id="camera">
+                                    <img src="/static/images/cameraicon.svg" alt="Camera Image"/>
+                                    <video controls playsinline></video>
+                                </div>
+                                <div class="mt-2">
+                                    <button id="toggle" class="btn btn-sm"
+                                            style="background-color: deepskyblue">
+                                        拍摄
+                                    </button>
+                                    <button id="upload" class="btn btn-sm" style="background-color: crimson">
+                                        上传
+                                    </button>
+                                    <button id="toggleCamera" class="btn btn-sm"
+                                            style="background-color: #86b7fe">
+                                        切换摄像头
+                                    </button>
+
+                                </div>
+
+                            </div>
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-12">
+                                <table class="table table-striped table-hover rounded">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">名称</th>
+                                        <th scope="col">耗时</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbody3">
+                                    <tr>
+                                        <td>...</td>
+                                        <td>...</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <a href="#menu3" class="">返回</a>
+                    </div>
+
+                </div>
+            </main>
         </div>
+    </div>
+</div>
 
-    </body>
+</body>
 </html>

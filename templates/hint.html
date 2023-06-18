@@ -5,11 +5,13 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>注册页面</title>
+        <link rel="icon" href="/static/images/register.png">
         <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/animate.css">
         <script src="/static/js/bootstrap.js"></script>
         <script src="/static/js/axios.min.js"></script>
+        <script src="/static/js/sweetalert2@11.js"></script>
         <style>
             html {
                 height: 100%;
@@ -89,6 +91,7 @@
             .right-box {
                 background-color: rgba(255, 255, 255, 50%);
                 border-radius: 7px 7px 7px 7px;
+                display: none;
             }
 
             .circle {
@@ -111,7 +114,7 @@
     </head>
     <body>
         <div class="container-fluid masking">
-            <div class="display-1" style="">Welcome to register</div>
+            <div class="display-1" style="">感谢选择, 欢迎注册</div>
         </div>
         <div class="container mt-5 w-100 h-75">
             <div class="row">
@@ -121,14 +124,14 @@
                     <form action="/user/register" autocomplete="off" method="post">
                         <div class="row mt-5 ms-xl-5 ms-lg-3 ms-md-2 ms-sm-1 ms-0">
                             <div class="col-12 col-xl-6 col-lg-8 col-md-10 col-sm-12">
-                                <label for="email" class="d-block lead">Email:</label>
+                                <label for="email" class="d-block lead">邮箱:</label>
                                 <input type="email" class="input" placeholder="请输入邮箱:" required name="email">
                             </div>
                         </div>
 
                         <div class="row mt-5 mb-5 ms-xl-5 ms-lg-3 ms-md-2 ms-sm-1 ms-0">
                             <div class="col-12 col-xl-6 col-lg-8 col-md-10 col-sm-12">
-                                <label for="password" class="d-block lead">Password:</label>
+                                <label for="password" class="d-block lead">密码:</label>
                                 <input type="password" class="input" placeholder="请输入密码:" required
                                        name="password">
                             </div>
@@ -160,16 +163,12 @@
                     </div>
                     <div class="row mt-xxl-5 mt-xl-4 mt-lg-4 mt-md-3 mt-sm-2 mt-1">
                         <p>
-                            <input type="password" class="btn"
-                                   style="border:none;background-color: black; width: 100%;opacity: 50%" required
-                                   placeholder="请键入密钥:" id="secret"
-                            >
                             <button class="btn" data-bs-toggle="collapse" role="button"
                                     aria-expanded="false" aria-controls="collapseExample"
                                     style="background-color: teal; color:#e2e3e5" type="submit"
                                     id="toggleBtn"
                             >
-                                Show Link
+                                显示链接
                             </button>
                         </p>
 
@@ -209,10 +208,27 @@
                                         ?
                                     </div>
                                 `
-                                alert("您暂时无法进入开发者界面")
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'warning',
+                                    title: '您暂时无法进入',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                             }
                         }).catch(function (error) {
+                            // 请求出错情况下
                             console.log(error)
+                            if(error.status >= 500){
+                                alert("服务器出现异常, 正在维护中!")
+                            }
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'question',
+                                title: '请求出现错误',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         })
 
                         function showRightBox() {  // 右框界面
@@ -239,11 +255,12 @@
                         }
                     }
                 )
+
                 let react = false;  // 用户验证的标识
-                async function authToUser() { // 发起获取token的请求
+                async function authToUser(secret) { // 发起获取token的请求
                     await axios.get('/data/auth/', {
                         params: {
-                            email: secret.value
+                            email: secret
                         }
 
                     }).then(function (response) {
@@ -255,11 +272,30 @@
                     });
                 }
 
+                const inputSecret = async () => {
+                    const {value: password} = await Swal.fire({
+                        title: '请输入密钥!',
+                        input: 'password',
+                        inputLabel: 'Secret',
+                        inputPlaceholder: 'Enter your password',
+                        inputAttributes: {
+                            maxlength: 10,
+                            autocapitalize: 'off',
+                            autocorrect: 'off'
+                        }
+                    })
+                    return password
+                }
+
+
                 let count = 0
                 // 在按钮上添加点击事件监听器
                 toggleBtn.addEventListener('click', async function () {
-                    await authToUser()  // 等待函数执行完毕
-                    console.log(react)
+                    // 弹出密码对话框
+                    const secret = await inputSecret()
+                    // 发起请求验证密钥
+                    await authToUser(secret)  // 等待函数执行完毕
+
                     if (react) {  // 如果校验成功
                         // 设置Cookie
                         const now = new Date();
@@ -283,7 +319,13 @@
                         }
                     } else {  // 如果校验失败
                         count += 1
-                        alert("输入密钥有误!")
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: '密钥输入有误!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                         console.log(count)
                         if (count >= 5) {
                             rightBox.innerHTML = `<div class="position-relative top-50 start-50 display-1">?</div>`
@@ -291,8 +333,6 @@
                     }
 
                 })
-
-
             }
 
 

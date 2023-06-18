@@ -8,11 +8,12 @@ from flask import url_for, redirect, render_template, request, g
 
 from app.create_app import create_app
 
+
 app = create_app()  # 创建一个app
 
 
 # 首页
-@app.route("/", endpoint='index', methods=("GET", "POST"))
+@app.route("/", endpoint='index', methods=("GET", ))
 def index():
     resp = redirect(url_for("user.login"))  # 把请求转发给login视图
     return resp

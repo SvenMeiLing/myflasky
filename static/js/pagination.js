@@ -26,7 +26,7 @@ window.onload = function () {
                 <td>${res.title}</td>
                 <td>${res.time}</td>
                 <td>${res.description}</td>
-                <td>${res.filename}</td>
+                <td>${(res.recognition_rate * 100).toFixed(2) + '%'}</td>
             </tr>
         `
             index++
@@ -93,8 +93,7 @@ window.onload = function () {
                         <li class="page-item" id="next">
                             <a class="page-link" href="#" id="next">下一页</a>
                         </li>
-                    `
-                )
+                    `)
 
                 // 设置内部ajax
                 let pageLink = $(".page-num");
@@ -195,6 +194,16 @@ window.onload = function () {
                         // 自动跳转到另一个页面
                         window.location.href = window.location.origin + "/";
                     });
+                } else if (status === 404) {
+                    console.log('aaa')
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: '网络似乎有问题?',
+                        showCancelButton: true,
+                        cancelButton: true,
+                        timer: 2500
+                    })
                 }
             }
 
@@ -208,8 +217,10 @@ window.onload = function () {
         })
     }
 
+
     let currentPageNum = 1
     $("#linkMenu5,#refresh").on("click", function (event) {  // 点击菜单瞬间发起ajax请求
+        // 加载动画
         if (event.target.id === "refresh") {
             refresh = true
         }
@@ -218,27 +229,33 @@ window.onload = function () {
         $("#welcomeUser").text(currentUser)  // 设置提示语
 
         $.ajax({  // 先甄别用户身份
-                url: `/data/auth/?email=${currentUser}`,
-                method: "GET",
-                contentType: "application/json",
-                dataType: "JSON",
-                success: function (response) {
+            url: `/data/auth/?email=${currentUser}`,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function (response) {
+                // 显示加载动画
+                accessToken = response.access_token;  // 拿到token
+                if (accessToken) { // 如果拿到access_token
 
-                    // 显示加载动画
-                    accessToken = response.access_token;  // 拿到token
-                    if (accessToken) { // 如果拿到access_token
-
-                        requestData(accessToken);  // 向接口请求表格数据
-                    } else {
-                        window.alert("你的身份错误")
-                    }
-
-                },
-                error: function (error) {
-                    console.log("错误")
+                    requestData(accessToken);  // 向接口请求表格数据
+                } else {
+                    window.alert("你的身份错误")
                 }
+                $("#spinner").addClass("animate__fadeOut") // 加载动画
+            },
+            error: function (error) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'info',
+                    title: '身份验证失败, 请检查网络!',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    timer: 1500
+                })
+                $("#spinner").addClass("animate__fadeOut") // 加载动画
             }
-        )
+        })
     })
 
 

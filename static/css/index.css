@@ -1,122 +1,148 @@
-/* utmost */
-@media (min-width: 2560px) {
-    .text-um {
-        font-size: 4.5rem;
-    }
-
-    ::placeholder {
-        font-size: 1.5rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+:root {
+    --primary: #094b65;
 }
 
-
-@media (min-width: 1400px) {
-    .mt-xxl-6 {
-        margin-top: 15rem !important;
-    }
-
-    .text-xxl {
-        font-size: 2rem;
-    }
-
-    .code-xxl-img {
-        width: 15rem;
-        height: 5rem;
-    }
-
-    .text-xxl {
-        font-size: 1.5rem;
-    }
-
-    ::placeholder {
-        font-size: 1.7rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* smaller */
-@media (min-width: 360px) {
-    .text-sr {
-        font-size: 1rem;
-    }
-
-    ::placeholder {
-        font-size: 1rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+body {
+    overflow-x: hidden;
+    background: #fff;
+    min-height: 100vh;
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-    .text-sm {
-        font-size: 1.3rem;
-    }
-
-    ::placeholder {
-        font-size: 1.2rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
 }
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    .text-md {
-        font-size: 1.03rem;
-    }
-
-    ::placeholder {
-        font-size: 1.4rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+#header .logo {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 2em;
+    text-decoration: none;
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    .text-lg {
-        font-size: 1rem;
-    }
-
-    .mt-lg-6 {
-        margin-top: 13rem !important;
-    }
-
-    ::placeholder {
-        font-size: 1rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+#header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .text-xl {
-        font-size: 1.12rem;
-    }
-
-    ::placeholder {
-        font-size: 1.2rem;
-        color: #1a1e21;
-        font-weight: 300;
-    }
+#header ul li {
+    list-style: none;
+    margin-left: 20px;
 }
 
-.toaster {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 16px;
-    background-color: rgba(255, 255, 255, 30%);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-    color: black;
-    font-size: 1.07rem;
+#header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: var(--primary);
+    border-radius: 20px;
+}
+
+#header ul li a:hover,
+#header ul li a.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, var(--primary), transparent);
+    z-index: 10;
+}
+
+section img {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+section #text {
+    position: absolute;
+    color: var(--primary);
+    font-size: 10vw;
     text-align: center;
-    z-index: 9999; /* 设置元素的层级，确保其在其他元素上层显示 */
+    line-height: .55em;
+    font-family: 'Rancho', cursive;
+    transform: translatey(-50%);
 }
+
+section #text span {
+    font-size: .20em;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+#btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 30px;
+    background: #fff;
+    color: var(--primary);
+    font-size: 1.2em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    transform: translatey(100px);
+}
+
+.sec {
+    position: relative;
+    padding: 100px;
+    background: var(--primary);
+}
+
+.sec h2 {
+    font-size: 3.5em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.sec p {
+    font-size: 1em;
+    color: #fff;
+}
+
+footer {
+    position: relative;
+    padding: 0px 100px;
+    background: var(--primary);
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+

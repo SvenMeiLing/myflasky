@@ -3,15 +3,15 @@
 # Time : 2023/5/10 11:17
 # Author: zzy
 import binascii
-import time
+import datetime
 
 from flask import render_template, request, jsonify, g
 from flask.views import View
 
-from app.models.data import DataModel
 from app.utils.check_login_state import login_required, decrypt_cookie
-from app.utils.get_baike import get_baike
-from app.vision.image_analysis import get_analysis_index, retrieval_result
+from app.utils.get_baike import get_plants_description
+from app.vision.image_analysis import get_analysis_index
+from ..models.plant_details import PlantDetailModel
 from ..models.user import UserModel
 from ..scripts.load_config import PROJECT_APP_DIR
 
@@ -43,15 +43,17 @@ class UpLoadFile(View):
             file_names.append(filename)
 
             # 此处调用识别函数获取结果, 提取关键字, 把每个内容封装成字典加入上面列表
-            start_time = time.perf_counter()
-            name = retrieval_result(get_analysis_index, f'{PROJECT_APP_DIR}/upload/' + filename)
-            end_time = time.perf_counter()
+            name, time_consume, rate = get_analysis_index(f'{PROJECT_APP_DIR}/upload/' + filename)
 
-            time_consuming = end_time - start_time
-            context = {"name": name, "description": get_baike(name), "time": round(time_consuming, 2)}
+            context = {
+                "name": name,
+                "recognition_rate": rate,
+                "description": get_plants_description(name),
+                "time_consume": round(time_consume, 2)
+            }
 
             result.append(context)
-            time_tables.append(time_consuming)
+            time_tables.append(time_consume)
 
         email = request.cookies.get('email')
 
@@ -64,13 +66,15 @@ class UpLoadFile(View):
             print(ipe, "测试用户登录此报错正常")
 
         for i, res in enumerate(result):
-            name, description = res.get("name"), res.get("description")
+            name, description, recognition_rate = res.get("name"), res.get("description"), res.get("recognition_rate")
 
-            data = DataModel(
+            data = PlantDetailModel(
                 title=name,
-                time=time_tables[i],
+                time_consume=time_tables[i],
                 description=description,
+                date=datetime.date.today(),
                 filename=file_names[i],
+                recognition_rate=recognition_rate,
                 user_id=current_user.id if current_email else '1'
             )
             insert_data.append(data)

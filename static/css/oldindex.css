@@ -1,0 +1,123 @@
+/* utmost */
+@media (min-width: 2560px) {
+    .text-um {
+        font-size: 4.5rem;
+    }
+
+    ::placeholder {
+        font-size: 1.5rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .mt-xxl-6 {
+        margin-top: 15rem !important;
+    }
+
+    .text-xxl {
+        font-size: 2rem;
+    }
+
+    .code-xxl-img {
+        width: 15rem;
+        height: 5rem;
+    }
+
+    .text-xxl {
+        font-size: 1.5rem;
+    }
+
+    ::placeholder {
+        font-size: 1.7rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+/* smaller */
+@media (min-width: 360px) {
+    .text-sr {
+        font-size: 1rem;
+    }
+
+    ::placeholder {
+        font-size: 1rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .text-sm {
+        font-size: 1.3rem;
+    }
+
+    ::placeholder {
+        font-size: 1.2rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .text-md {
+        font-size: 1.03rem;
+    }
+
+    ::placeholder {
+        font-size: 1.4rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .text-lg {
+        font-size: 1rem;
+    }
+
+    .mt-lg-6 {
+        margin-top: 13rem !important;
+    }
+
+    ::placeholder {
+        font-size: 1rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .text-xl {
+        font-size: 1.1rem;
+    }
+
+    ::placeholder {
+        font-size: 1.2rem;
+        color: #1a1e21;
+        font-weight: 300;
+    }
+}
+
+.toaster {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 30%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    color: black;
+    font-size: 1.07rem;
+    text-align: center;
+    z-index: 9999; /* 设置元素的层级，确保其在其他元素上层显示 */
+}
+

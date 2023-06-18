@@ -22,6 +22,15 @@ function showToast(message) {
     }, 3250);
 }
 
+function updateCode() {
+    // 更新验证码
+    axios.get("/user/code").then((response) => {
+        $("#code").attr('src', "/"+response.data.filename)
+        console.log(response.data.filename)
+        console.log($("#code").attr('src'))
+    })
+}
+
 
 
 

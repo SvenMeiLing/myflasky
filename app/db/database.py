@@ -33,6 +33,7 @@ def init_db():
     from app.models import user
     from app.models import confirmation
     from app.models import data
+    from app.models import plant_details
     Base.metadata.create_all(bind=engine)  # 创建模型定义的表
 
 
@@ -44,6 +45,7 @@ def init_data():  # 初始化用户
     """
     from app.models.user import UserModel
     from app.models.data import DataModel  # 此处还需导入相互建立关系的模型
+    from app.models.plant_details import PlantDetailModel
     session = g.db_session
     admin = UserModel(email="admin@qq.com", password=generate_password_hash("admin", "sha256", 8))
     user = session.query(UserModel).filter(UserModel.email == admin.email).first()
@@ -51,3 +53,4 @@ def init_data():  # 初始化用户
         session.add(admin)
         session.commit()
         session.flush(admin)
+

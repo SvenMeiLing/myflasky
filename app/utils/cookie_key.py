@@ -6,9 +6,9 @@
 import base64
 
 
-def encrypt_cookie(email):
+def encrypt_cookie(value):
     # 先转换成字节串
-    data = email.encode('utf-8')
+    data = value.encode('utf-8')
     # 进行base64编码
     encoded = base64.urlsafe_b64encode(data)
     # 返回加密后的信息
